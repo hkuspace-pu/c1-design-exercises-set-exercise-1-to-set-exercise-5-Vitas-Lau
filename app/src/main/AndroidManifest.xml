@@ -3,14 +3,16 @@
     package="com.example.restaurantapp">
 
     <application ...>
-        <activity android:name=".LoginActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".StaffHomeActivity" />
-        <activity android:name=".GuestHomeActivity" />
+    <activity android:name=".ManageMenuActivity" />
+    <activity android:name=".StaffDashboardActivity" />
+    <activity android:name=".GuestDashboardActivity" />
+    <activity android:name=".RegisterActivity" />
+    <activity android:name=".LoginActivity"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
     </application>
 </manifest>

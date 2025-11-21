@@ -44,4 +44,11 @@
 	<string name="my_profile_sub">View and edit your information</string>
 	<string name="notifications">Notifications</string>
 	<string name="notifications_sub">Check your notifications</string>
+
+	<string name="manage_menu">Manage Menu</string>
+	<string name="search_menu">Search menu...</string>
+	<string name="available">Available</string>
+	<string name="edit">Edit</string>
+	<string name="delete">Delete</string>
+	<string name="no_menu_items">No menu items found</string>
 </resources>
