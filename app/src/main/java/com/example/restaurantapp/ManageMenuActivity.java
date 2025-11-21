@@ -1,8 +1,10 @@
 package com.example.restaurantapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -45,7 +47,8 @@ public class ManageMenuActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         // Search functionality
-        findViewById(R.id.search_view).addTextChangedListener(new TextWatcher() {
+        AutoCompleteTextView searchView = findViewById(R.id.search_view);
+        searchView.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
             @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
                 adapter.filter(s.toString());
@@ -53,18 +56,12 @@ public class ManageMenuActivity extends AppCompatActivity {
             @Override public void afterTextChanged(Editable s) {}
         });
 
-        // In ManageMenuActivity
+        FloatingActionButton fab = findViewById(R.id.fab_add);
         fab.setOnClickListener(v -> {
             Intent intent = new Intent(this, AddEditMenuItemActivity.class);
             startActivityForResult(intent, 100);
         });
-
-        // In MenuItemAdapter onBindViewHolder
-        holder.editButton.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), AddEditMenuItemActivity.class);
-            intent.putExtra("menu_item", item);
-            ((AppCompatActivity) v.getContext()).startActivityForResult(intent, 101);
-        });
+    }
 
     @Override
     public boolean onSupportNavigateUp() {

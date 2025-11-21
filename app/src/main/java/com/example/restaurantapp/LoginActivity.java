@@ -1,5 +1,6 @@
 package com.example.restaurantapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -61,7 +62,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         // Register as guest click
-		// In onCreate, update this:
 		registerGuest.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
