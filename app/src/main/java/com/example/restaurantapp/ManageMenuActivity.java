@@ -53,11 +53,18 @@ public class ManageMenuActivity extends AppCompatActivity {
             @Override public void afterTextChanged(Editable s) {}
         });
 
-        // FAB - Add new item
-        FloatingActionButton fab = findViewById(R.id.fab_add);
-        fab.setOnClickListener(v ->
-                Toast.makeText(this, "Add new menu item", Toast.LENGTH_SHORT).show());
-    }
+        // In ManageMenuActivity
+        fab.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AddEditMenuItemActivity.class);
+            startActivityForResult(intent, 100);
+        });
+
+        // In MenuItemAdapter onBindViewHolder
+        holder.editButton.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), AddEditMenuItemActivity.class);
+            intent.putExtra("menu_item", item);
+            ((AppCompatActivity) v.getContext()).startActivityForResult(intent, 101);
+        });
 
     @Override
     public boolean onSupportNavigateUp() {

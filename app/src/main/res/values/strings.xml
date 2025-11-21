@@ -51,4 +51,22 @@
 	<string name="edit">Edit</string>
 	<string name="delete">Delete</string>
 	<string name="no_menu_items">No menu items found</string>
+
+	<string name="add_edit_menu_item">Add New Menu Item</string>
+	<string name="edit_menu_item">Edit Menu Item</string>
+	<string name="dish_image">Dish Image</string>
+	<string name="tap_to_upload">Tap to upload or take photo</string>
+	<string name="dish_name_hint">Dish Name</string>
+	<string name="description_hint">Description</string>
+	<string name="price_hint">Price</string>
+	<string name="item_available">Item Available</string>
+	<string name="dietary_info">Dietary Information</string>
+	<string name="vegetarian">Vegetarian</string>
+	<string name="vegan">Vegan</string>
+	<string name="gluten_free">Gluten-Free</string>
+	<string name="dairy_free">Dairy-Free</string>
+	<string name="nut_free">Nut-Free</string>
+	<string name="spicy">Spicy</string>
+	<string name="save">SAVE</string>
+	<string name="cancel">CANCEL</string>
 </resources>
