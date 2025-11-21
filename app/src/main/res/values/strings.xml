@@ -1,3 +1,47 @@
 <resources>
-    <string name="app_name">COMP2000HK Software Engineering 2</string>
+    <string name="app_name">RestaurantHub</string>
+    <string name="username_hint">Enter your username</string>
+    <string name="password_hint">Enter your password</string>
+    <string name="login_button">Login</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="or">or</string>
+    <string name="register_guest">Register As Guest</string>
+	
+	<!-- Existing strings... -->
+
+	<string name="register_title">Register as Guest</string>
+	<string name="create_account_heading">Create Your Account</string>
+	<string name="join_us_subtext">Join us to make reservations and explore our menu</string>
+	<string name="full_name_hint">Enter your full name</string>
+	<string name="email_hint">Enter your email</string>
+	<string name="phone_hint">Enter your phone number</string>
+	<string name="create_password_hint">Create a password</string>
+	<string name="confirm_password_hint">Confirm your password</string>
+	<string name="agree_terms">I agree to Terms &amp; Conditions</string>
+	<string name="create_account_button">CREATE ACCOUNT</string>
+	<string name="already_have_account">Already have an account? Sign in</string>
+	
+	<string name="greeting">Hi, %s!</string> <!-- %s for username -->
+	<string name="logout">Logout</string>
+	<string name="staff_dashboard_heading">STAFF DASHBOARD</string>
+	<string name="staff_subtext">Manage your restaurant operations</string>
+	<string name="manage_menu">Manage Menu</string>
+	<string name="manage_menu_sub">Add, edit, or remove menu items</string>
+	<string name="view_reservations">View Reservations</string>
+	<string name="view_reservations_sub">Check and manage table bookings</string>
+	<string name="settings">Settings</string>
+	<string name="settings_sub">Manage your account and preferences</string>
+
+	<string name="guest_welcome">Welcome Back!</string>
+	<string name="guest_subtext">Explore our menu and manage your reservations</string>
+	<string name="browse_menu">Browse Menu</string>
+	<string name="browse_menu_sub">View our delicious offerings</string>
+	<string name="book_table">Book a Table</string>
+	<string name="book_table_sub">Make a new reservation</string>
+	<string name="my_reservations">My Reservations</string>
+	<string name="my_reservations_sub">View and manage your bookings</string>
+	<string name="my_profile">My Profile</string>
+	<string name="my_profile_sub">View and edit your information</string>
+	<string name="notifications">Notifications</string>
+	<string name="notifications_sub">Check your notifications</string>
 </resources>

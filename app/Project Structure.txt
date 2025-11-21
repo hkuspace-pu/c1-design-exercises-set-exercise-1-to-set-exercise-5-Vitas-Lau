@@ -1,0 +1,37 @@
+RestaurantApp/
+├── app/
+│   ├── build.gradle  // Ensure Material Design dependency is present
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/
+│   │   │   │   └── com/example/restaurantapp/
+│   │   │   │       ├── LoginActivity.java  // Navigate to dashboard based on role
+│   │   │   │       ├── RegisterActivity.java  // Navigate to GuestDashboard after register
+│   │   │   │       ├── StaffDashboardActivity.java  // Staff home logic
+│   │   │   │       └── GuestDashboardActivity.java  // Guest home logic
+│   │   │   ├── res/
+│   │   │   │   ├── drawable/
+│   │   │   │   │   ├── ic_logo.xml
+│   │   │   │   │   ├── ic_document.xml  // For Manage Menu (staff)
+│   │   │   │   │   ├── ic_calendar.xml  // For View Reservations (staff) and Book a Table (guest)
+│   │   │   │   │   ├── ic_gear.xml  // For Settings (staff)
+│   │   │   │   │   ├── ic_fork.xml  // For Browse Menu (guest)
+│   │   │   │   │   ├── ic_check.xml  // For My Reservations (guest)
+│   │   │   │   │   ├── ic_person.xml  // For My Profile (guest)
+│   │   │   │   │   ├── ic_bell.xml  // For Notifications (guest)
+│   │   │   │   │   ├── circle_background_purple.xml
+│   │   │   │   │   ├── circle_background_green.xml
+│   │   │   │   │   ├── circle_background_orange.xml
+│   │   │   │   │   ├── circle_background_red.xml
+│   │   │   │   │   └── circle_background_gray.xml
+│   │   │   │   ├── layout/
+│   │   │   │   │   ├── activity_login.xml
+│   │   │   │   │   ├── activity_register.xml
+│   │   │   │   │   ├── activity_staff_dashboard.xml  // Staff home UI
+│   │   │   │   │   └── activity_guest_dashboard.xml  // Guest home UI
+│   │   │   │   └── values/
+│   │   │   │       ├── colors.xml  // Add light_blue for background
+│   │   │   │       └── strings.xml  // Add dashboard strings
+│   │   └── AndroidManifest.xml  // Add new activities
+│   └── ...
+└── build.grad
