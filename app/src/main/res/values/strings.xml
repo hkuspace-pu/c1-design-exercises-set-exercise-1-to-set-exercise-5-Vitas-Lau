@@ -69,4 +69,13 @@
 	<string name="spicy">Spicy</string>
 	<string name="save">SAVE</string>
 	<string name="cancel">CANCEL</string>
+
+	<string name="reservations">Reservations</string>
+	<string name="today">Today</string>
+	<string name="upcoming">Upcoming</string>
+	<string name="past">Past</string>
+	<string name="edit">Edit</string>
+	<string name="call">Call</string>
+	<string name="cancel">Cancel</string>
+	<string name="no_reservations">No reservations found</string>
 </resources>

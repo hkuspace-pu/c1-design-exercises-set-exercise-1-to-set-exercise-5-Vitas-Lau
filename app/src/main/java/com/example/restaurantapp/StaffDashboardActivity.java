@@ -49,13 +49,8 @@ public class StaffDashboardActivity extends AppCompatActivity {
         manageMenuCard.setOnClickListener(v ->
                 startActivity(new Intent(StaffDashboardActivity.this, ManageMenuActivity.class)));
 
-        viewReservationsCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // TODO: Navigate to reservations view activity
-                Toast.makeText(StaffDashboardActivity.this, "View Reservations clicked", Toast.LENGTH_SHORT).show();
-            }
-        });
+        viewReservationsCard.setOnClickListener(v ->
+                startActivity(new Intent(StaffDashboardActivity.this, ReservationsActivity.class)));
 
         settingsCard.setOnClickListener(new View.OnClickListener() {
             @Override
