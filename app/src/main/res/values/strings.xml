@@ -1,78 +1,11 @@
 <resources>
     <string name="app_name">RestaurantHub</string>
-    <string name="username_hint">Enter your username</string>
-    <string name="password_hint">Enter your password</string>
-    <string name="login_button">Login</string>
+
+    <!-- Login Screen -->
+    <string name="hint_username">Enter your username</string>
+    <string name="hint_password">Enter your password</string>
+    <string name="btn_login">Login</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="or">or</string>
-    <string name="register_guest">Register As Guest</string>
-	
-	<!-- Existing strings... -->
-
-	<string name="register_title">Register as Guest</string>
-	<string name="create_account_heading">Create Your Account</string>
-	<string name="join_us_subtext">Join us to make reservations and explore our menu</string>
-	<string name="full_name_hint">Enter your full name</string>
-	<string name="email_hint">Enter your email</string>
-	<string name="phone_hint">Enter your phone number</string>
-	<string name="create_password_hint">Create a password</string>
-	<string name="confirm_password_hint">Confirm your password</string>
-	<string name="agree_terms">I agree to Terms &amp; Conditions</string>
-	<string name="create_account_button">CREATE ACCOUNT</string>
-	<string name="already_have_account">Already have an account? Sign in</string>
-	
-	<string name="greeting">Hi, %s!</string> <!-- %s for username -->
-	<string name="logout">Logout</string>
-	<string name="staff_dashboard_heading">STAFF DASHBOARD</string>
-	<string name="staff_subtext">Manage your restaurant operations</string>
-	<string name="manage_menu">Manage Menu</string>
-	<string name="manage_menu_sub">Add, edit, or remove menu items</string>
-	<string name="view_reservations">View Reservations</string>
-	<string name="view_reservations_sub">Check and manage table bookings</string>
-	<string name="settings">Settings</string>
-	<string name="settings_sub">Manage your account and preferences</string>
-
-	<string name="guest_welcome">Welcome Back!</string>
-	<string name="guest_subtext">Explore our menu and manage your reservations</string>
-	<string name="browse_menu">Browse Menu</string>
-	<string name="browse_menu_sub">View our delicious offerings</string>
-	<string name="book_table">Book a Table</string>
-	<string name="book_table_sub">Make a new reservation</string>
-	<string name="my_reservations">My Reservations</string>
-	<string name="my_reservations_sub">View and manage your bookings</string>
-	<string name="my_profile">My Profile</string>
-	<string name="my_profile_sub">View and edit your information</string>
-	<string name="notifications">Notifications</string>
-	<string name="notifications_sub">Check your notifications</string>
-
-	<string name="search_menu">Search menu&#8230;</string>
-	<string name="available">Available</string>
-	<string name="edit">Edit</string>
-	<string name="delete">Delete</string>
-	<string name="no_menu_items">No menu items found</string>
-
-	<string name="add_edit_menu_item">Add New Menu Item</string>
-	<string name="edit_menu_item">Edit Menu Item</string>
-	<string name="dish_image">Dish Image</string>
-	<string name="tap_to_upload">Tap to upload or take photo</string>
-	<string name="dish_name_hint">Dish Name</string>
-	<string name="description_hint">Description</string>
-	<string name="price_hint">Price</string>
-	<string name="item_available">Item Available</string>
-	<string name="dietary_info">Dietary Information</string>
-	<string name="vegetarian">Vegetarian</string>
-	<string name="vegan">Vegan</string>
-	<string name="gluten_free">Gluten-Free</string>
-	<string name="dairy_free">Dairy-Free</string>
-	<string name="nut_free">Nut-Free</string>
-	<string name="spicy">Spicy</string>
-	<string name="save">SAVE</string>
-	<string name="cancel">Cancel</string>
-
-	<string name="reservations">Reservations</string>
-	<string name="today">Today</string>
-	<string name="upcoming">Upcoming</string>
-	<string name="past">Past</string>
-	<string name="call">Call</string>
-	<string name="no_reservations">No reservations found</string>
+    <string name="register_as_guest">Register as Guest</string>
 </resources>
