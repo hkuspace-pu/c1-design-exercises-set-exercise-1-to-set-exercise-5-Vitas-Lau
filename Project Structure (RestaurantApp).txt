@@ -2,13 +2,17 @@ RestaurantApp/
 ├── app/
 │   ├── src/
 │   │   ├── main/
-│   │   │   ├── AndroidManifest.xml                  ← Updated below
+│   │   │   ├── AndroidManifest.xml                  ← Updated with LoginActivity as launcher (temp)
 │   │   │   ├── java/com/example/restauranthub/
-│   │   │   │   ├── MainActivity.java
+│   │   │   │   ├── RestaurantApplication.java    ← Optional Application class
+│   │   │   │   ├── activity/
+│   │   │   │   │   ├── SplashActivity.java
+│   │   │   │   │   ├── LoginActivity.java        ← CURRENTLY IMPLEMENTED
+│   │   │   │   │   └── HomeActivity.java         ← Main host with BottomNavigationView
 │   │   │   │   ├── adapter/
 │   │   │   │   │   ├── MenuItemAdapter.java
 │   │   │   │   │   ├── ReservationAdapter.java
-│   │   │   │   │   └── CategoryAdapter.java
+│   │   │   │   │   └── CategoryFilterAdapter.java
 │   │   │   │   ├── model/
 │   │   │   │   │   ├── MenuItem.java
 │   │   │   │   │   ├── Reservation.java
@@ -33,15 +37,22 @@ RestaurantApp/
 │   │   │   │   │       ├── AddEditMenuItemFragment.java
 │   │   │   │   │       ├── StaffProfileFragment.java
 │   │   │   │   │       └── StaffSettingsFragment.java
-│   │   │   │   └── activity/
-│   │   │   │       ├── SplashActivity.java
-│   │   │   │       ├── LoginActivity.java
-│   │   │   │       └── HomeActivity.java          ← Navigation Host (Bottom Nav + Fragment Container)
+│   │   │   │   └── utils/
+│   │   │   │       ├── Constants.java
+│   │   │   │       └── Extensions.kt (optional)
 │   │   │   ├── res/
+│   │   │   │   ├── drawable/
+│   │   │   │   │   ├── gradient_background.xml      ← Login background
+│   │   │   │   │   ├── circle_indigo.xml
+│   │   │   │   │   ├── ic_shopping_cart.xml
+│   │   │   │   │   ├── ic_back.xml
+│   │   │   │   │   ├── ic_leaf.xml
+│   │   │   │   │   ├── ic_flame.xml
+│   │   │   │   │   ├── ic_wheat.xml
+│   │   │   │   │   └── ... (other dietary icons)
 │   │   │   │   ├── layout/
-│   │   │   │   │   ├── activity_main.xml
-│   │   │   │   │   ├── activity_login.xml
-│   │   │   │   │   ├── activity_home.xml
+│   │   │   │   │   ├── activity_login.xml           ← JUST IMPLEMENTED
+│   │   │   │   │   ├── activity_home.xml            ← Bottom Nav + NavHostFragment
 │   │   │   │   │   ├── fragment_guest_home.xml
 │   │   │   │   │   ├── fragment_guest_browse_menu.xml
 │   │   │   │   │   ├── fragment_guest_menu_item_detail.xml
@@ -49,32 +60,24 @@ RestaurantApp/
 │   │   │   │   │   ├── fragment_guest_my_reservations.xml
 │   │   │   │   │   ├── fragment_guest_profile.xml
 │   │   │   │   │   ├── fragment_notification_settings.xml
-│   │   │   │   │   ├── fragment_change_password.xml
 │   │   │   │   │   ├── fragment_manage_menu.xml
-│   │   │   │   │   ├── fragment_add_edit_menu_item.xml
-│   │   │   │   │   ├── fragment_staff_reservations.xml
-│   │   │   │   │   └── ... (all other fragments)
+│   │   │   │   │   └── ... (all other XMLs will be added one by one)
 │   │   │   │   ├── menu/
-│   │   │   │   │   └── bottom_nav_menu.xml
+│   │   │   │   │   ├── bottom_nav_guest.xml
+│   │   │   │   │   └── bottom_nav_staff.xml
 │   │   │   │   ├── navigation/
 │   │   │   │   │   ├── nav_graph_guest.xml
 │   │   │   │   │   └── nav_graph_staff.xml
-│   │   │   │   ├── drawable/
-│   │   │   │   │   ├── ic_back.xml
-│   │   │   │   │   ├── ic_leaf.xml
-│   │   │   │   │   ├── ic_flame.xml
-│   │   │   │   │   ├── ic_wheat.xml
-│   │   │   │   │   └── ... (dietary icons)
 │   │   │   │   ├── values/
-│   │   │   │   │   ├── colors.xml
-│   │   │   │   │   ├── themes.xml
+│   │   │   │   │   ├── colors.xml        ← Indigo, green, red, gray palette
+│   │   │   │   │   ├── themes.xml        ← Material3 DayNight
 │   │   │   │   │   ├── strings.xml
 │   │   │   │   │   └── dimens.xml
-│   │   │   │   └── mipmap-*/ic_launcher*.png
-│   │   │   └── assets/
-│   │   │       └── (optional placeholder images)
-│   │   └── test/ & androidTest/ (unchanged)
-├── build.gradle.kts (Project level) - unchanged
-├── libs.versions.toml                   ← Your current one is fine
+│   │   │   │   └── xml/
+│   │   │   │       └── (backup_rules.xml, etc.)
+│   │   │   └── assets/ (optional placeholder images)
+│   │   └── test/ & androidTest/
+├── build.gradle.kts (app level)     ← YOUR CURRENT ONE IS PERFECT (viewBinding = true already added)
+├── libs.versions.toml               ← No changes needed
 ├── gradle.properties
 └── settings.gradle.kts

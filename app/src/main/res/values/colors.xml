@@ -2,4 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="indigo_50">#EEF2FF</color>
+    <color name="indigo_100">#E0E7FF</color>
+    <color name="indigo_600">#4F46E5</color>
+    <color name="indigo_700">#4338CA</color>
+    <color name="green_600">#16A34A</color>
+    <color name="red_600">#DC2626</color>
+    <color name="gray_50">#FAFAFA</color>
+    <color name="gray_900">#111827</color>
 </resources>

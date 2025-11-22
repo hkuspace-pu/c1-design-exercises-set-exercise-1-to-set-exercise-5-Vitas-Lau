@@ -15,27 +15,20 @@
 
         <!-- Splash Screen -->
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".activity.LoginActivity"
             android:exported="true"
-            android:theme="@style/Theme.RestaurantApp.Splash">
+            android:theme="@style/Theme.RestaurantApp.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- Login & Auth Flow -->
-        <activity
-            android:name=".activity.LoginActivity"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
-
-        <!-- Main Navigation Host -->
         <activity
             android:name=".activity.HomeActivity"
             android:exported="false"
             android:label="RestaurantHub"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTask" />
 
     </application>
 </manifest>
