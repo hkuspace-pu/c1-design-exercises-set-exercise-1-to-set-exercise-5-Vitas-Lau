@@ -1,0 +1,80 @@
+RestaurantApp/
+├── app/
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── AndroidManifest.xml                  ← Updated below
+│   │   │   ├── java/com/example/restauranthub/
+│   │   │   │   ├── MainActivity.java
+│   │   │   │   ├── adapter/
+│   │   │   │   │   ├── MenuItemAdapter.java
+│   │   │   │   │   ├── ReservationAdapter.java
+│   │   │   │   │   └── CategoryAdapter.java
+│   │   │   │   ├── model/
+│   │   │   │   │   ├── MenuItem.java
+│   │   │   │   │   ├── Reservation.java
+│   │   │   │   │   └── User.java
+│   │   │   │   ├── fragment/
+│   │   │   │   │   ├── guest/
+│   │   │   │   │   │   ├── GuestHomeFragment.java
+│   │   │   │   │   │   ├── GuestBrowseMenuFragment.java
+│   │   │   │   │   │   ├── GuestMenuItemDetailFragment.java
+│   │   │   │   │   │   ├── GuestMyReservationsFragment.java
+│   │   │   │   │   │   ├── MakeReservationFragment.java
+│   │   │   │   │   │   ├── GuestProfileFragment.java
+│   │   │   │   │   │   ├── GuestRegistrationFragment.java
+│   │   │   │   │   │   ├── ForgotPasswordFragment.java
+│   │   │   │   │   │   ├── ChangePasswordFragment.java
+│   │   │   │   │   │   └── NotificationSettingsFragment.java
+│   │   │   │   │   └── staff/
+│   │   │   │   │       ├── StaffHomeFragment.java
+│   │   │   │   │       ├── StaffReservationsFragment.java
+│   │   │   │   │       ├── StaffEditReservationFragment.java
+│   │   │   │   │       ├── ManageMenuFragment.java
+│   │   │   │   │       ├── AddEditMenuItemFragment.java
+│   │   │   │   │       ├── StaffProfileFragment.java
+│   │   │   │   │       └── StaffSettingsFragment.java
+│   │   │   │   └── activity/
+│   │   │   │       ├── SplashActivity.java
+│   │   │   │       ├── LoginActivity.java
+│   │   │   │       └── HomeActivity.java          ← Navigation Host (Bottom Nav + Fragment Container)
+│   │   │   ├── res/
+│   │   │   │   ├── layout/
+│   │   │   │   │   ├── activity_main.xml
+│   │   │   │   │   ├── activity_login.xml
+│   │   │   │   │   ├── activity_home.xml
+│   │   │   │   │   ├── fragment_guest_home.xml
+│   │   │   │   │   ├── fragment_guest_browse_menu.xml
+│   │   │   │   │   ├── fragment_guest_menu_item_detail.xml
+│   │   │   │   │   ├── fragment_make_reservation.xml
+│   │   │   │   │   ├── fragment_guest_my_reservations.xml
+│   │   │   │   │   ├── fragment_guest_profile.xml
+│   │   │   │   │   ├── fragment_notification_settings.xml
+│   │   │   │   │   ├── fragment_change_password.xml
+│   │   │   │   │   ├── fragment_manage_menu.xml
+│   │   │   │   │   ├── fragment_add_edit_menu_item.xml
+│   │   │   │   │   ├── fragment_staff_reservations.xml
+│   │   │   │   │   └── ... (all other fragments)
+│   │   │   │   ├── menu/
+│   │   │   │   │   └── bottom_nav_menu.xml
+│   │   │   │   ├── navigation/
+│   │   │   │   │   ├── nav_graph_guest.xml
+│   │   │   │   │   └── nav_graph_staff.xml
+│   │   │   │   ├── drawable/
+│   │   │   │   │   ├── ic_back.xml
+│   │   │   │   │   ├── ic_leaf.xml
+│   │   │   │   │   ├── ic_flame.xml
+│   │   │   │   │   ├── ic_wheat.xml
+│   │   │   │   │   └── ... (dietary icons)
+│   │   │   │   ├── values/
+│   │   │   │   │   ├── colors.xml
+│   │   │   │   │   ├── themes.xml
+│   │   │   │   │   ├── strings.xml
+│   │   │   │   │   └── dimens.xml
+│   │   │   │   └── mipmap-*/ic_launcher*.png
+│   │   │   └── assets/
+│   │   │       └── (optional placeholder images)
+│   │   └── test/ & androidTest/ (unchanged)
+├── build.gradle.kts (Project level) - unchanged
+├── libs.versions.toml                   ← Your current one is fine
+├── gradle.properties
+└── settings.gradle.kts
