@@ -1,47 +1,75 @@
 app/
-├── src/main/
-│   ├── java/com/example/restauranthub/
-│   │   ├── activity/
-│   │   │   ├── LoginActivity.java
-│   │   │   ├── GuestDashboardActivity.java
-│   │   │   ├── StaffDashboardActivity.java
-│   │   │   ├── MenuBrowseActivity.java               (guest view)
-│   │   │   ├── MenuManageActivity.java                (staff view)
-│   │   │   ├── MenuItemDetailActivity.java
-│   │   │   ├── AddEditMenuItemActivity.java
-│   │   │   ├── BookTableActivity.java
-│   │   │   ├── MyReservationsActivity.java
-│   │   │   ├── StaffReservationsActivity.java
-│   │   │   ├── NotificationSettingsActivity.java
-│   │   │   ├── ProfileActivity.java
-│   │   │   └── RegisterActivity.java
-│   │   └── adapter/
-│   │       ├── MenuItemAdapter.java                  (for RecyclerView)
-│   │       └── ReservationAdapter.java
-│   ├── res/
-│   │   ├── layout/
-│   │   │   ├── activity_login.xml
-│   │   │   ├── activity_guest_dashboard.xml
-│   │   │   ├── activity_staff_dashboard.xml
-│   │   │   ├── activity_menu_browse.xml
-│   │   │   ├── activity_menu_manage.xml
-│   │   │   ├── activity_menu_item_detail.xml
-│   │   │   ├── activity_add_edit_menu_item.xml
-│   │   │   ├── activity_book_table.xml
-│   │   │   ├── activity_my_reservations.xml
-│   │   │   ├── activity_staff_reservations.xml
-│   │   │   ├── activity_notification_settings.xml
-│   │   │   ├── activity_profile.xml
-│   │   │   ├── activity_register.xml
-│   │   │   ├── item_menu_card.xml                    (guest card)
-│   │   │   ├── item_menu_manage_card.xml             (staff card)
-│   │   │   └── item_reservation.xml
-│   │   ├── drawable/   (your food images + icons)
-│   │   ├── mipmap/     (launcher icons)
-│   │   ├── values/
-│   │   │   ├── colors.xml
-│   │   │   ├── strings.xml
-│   │   │   ├── themes.xml
-│   │   │   └── styles.xml
-│   │   └── menu/       (optional bottom nav or overflow menus)
+├── manifests/
 │   └── AndroidManifest.xml
+├── java/
+│   └── com/
+│       └── example/
+│           └── restauranthub/
+│               ├── activity/
+│               │   ├── AddEditMenuItemActivity.java
+│               │   ├── BookTableActivity.java
+│               │   ├── GuestDashboardActivity.java
+│               │   ├── LoginActivity.java
+│               │   ├── MenuBrowseActivity.java
+│               │   ├── MenuItemDetailActivity.java
+│               │   ├── MenuManageActivity.java
+│               │   ├── MyReservationsActivity.java
+│               │   ├── NotificationSettingsActivity.java
+│               │   ├── ProfileActivity.java
+│               │   ├── RegisterActivity.java
+│               │   ├── StaffDashboardActivity.java
+│               │   └── StaffReservationsActivity.java
+│               └── adapter/
+│                   ├── MenuItemAdapter.java
+│                   └── ReservationAdapter.java
+├── res/
+│   ├── drawable/
+│   │   ├── button_black_rounded.xml
+│   │   ├── button_rounded_white_outline.xml
+│   │   ├── circle_background_white.xml
+│   │   ├── circle_blue_light.xml
+│   │   ├── circle_green_light.xml
+│   │   ├── circle_orange_light.xml
+│   │   ├── circle_purple_background.xml
+│   │   ├── circle_purple_light.xml
+│   │   ├── edittext_rounded_background.xml
+│   │   ├── ic_back_arrow.xml
+│   │   ├── ic_calendar_green.xml
+│   │   ├── ic_calendar_orange.xml
+│   │   ├── ic_document_blue.xml
+│   │   ├── ic_fork_blue.xml
+│   │   ├── ic_gear_gray.xml
+│   │   ├── ic_list_green.xml
+│   │   ├── ic_person_purple.xml
+│   │   ├── ic_shopping_cart_purple.xml
+│   │   ├── item_menu_card.xml
+│   │   ├── item_menu_manage_card.xml
+│   │   └── item_reservation.xml
+│   ├── layout/
+│   │   ├── activity_add_edit_menu_item.xml
+│   │   ├── activity_book_table.xml
+│   │   ├── activity_guest_dashboard.xml
+│   │   ├── activity_login.xml
+│   │   ├── activity_menu_browse.xml
+│   │   ├── activity_menu_item_detail.xml
+│   │   ├── activity_menu_manage.xml
+│   │   ├── activity_my_reservations.xml
+│   │   ├── activity_notification_settings.xml
+│   │   ├── activity_profile.xml
+│   │   ├── activity_register.xml
+│   │   ├── activity_staff_dashboard.xml
+│   │   └── activity_staff_reservations.xml
+│   ├── mipmap/
+│   │   ├── ic_launcher.png
+│   │   └── ic_launcher_round.png
+│   ├── values/
+│   │   ├── colors.xml
+│   │   ├── strings.xml
+│   │   ├── styles.xml
+│   │   └── themes.xml
+│   └── xml/
+│       ├── backup_rules.xml
+│       └── data_extraction_rules.xml
+├── build.gradle.kts
+├── libs.versions.toml
+└── proguard-rules.pro
