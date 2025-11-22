@@ -4,9 +4,7 @@ plugins {
 
 android {
     namespace = "com.example.restauranthub"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.restauranthub"
@@ -21,17 +19,13 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-
     buildFeatures {
         viewBinding = true
     }
@@ -43,10 +37,12 @@ dependencies {
     implementation(libs.activity)
     implementation(libs.constraintlayout)
 
-    implementation("androidx.navigation:navigation-fragment:2.7.7")
-    implementation("androidx.navigation:navigation-ui:2.7.7")
-    implementation("com.github.bumptech.glide:glide:4.16.0")  // For menu images
-    implementation("com.github.bumptech.glide:compiler:4.16.0")
+    // For RecyclerView
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    // For CardView
+    implementation("androidx.cardview:cardview:1.0.0")
+    // Glide for image loading (optional but recommended)
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

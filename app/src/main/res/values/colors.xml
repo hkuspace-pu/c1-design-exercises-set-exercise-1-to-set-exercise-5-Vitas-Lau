@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="indigo_50">#EEF2FF</color>
-    <color name="indigo_100">#E0E7FF</color>
-    <color name="indigo_600">#4F46E5</color>
-    <color name="indigo_700">#4338CA</color>
-    <color name="green_600">#16A34A</color>
-    <color name="red_600">#DC2626</color>
-    <color name="gray_50">#FAFAFA</color>
-    <color name="gray_900">#111827</color>
+    <color name="purple_primary">#6C63FF</color>
+    <color name="purple_light">#E7E5FF</color>
+    <color name="gray_light">#F8F9FA</color>
+    <color name="gray_medium">#DEE2E6</color>
+    <color name="red_cancel">#FF6B6B</color>
+    <color name="green_available">#4CAF50</color>
+    <color name="black_text">#212529</color>
+    <color name="white">#FFFFFF</color>
 </resources>
