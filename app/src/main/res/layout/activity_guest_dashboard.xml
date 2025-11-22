@@ -1,18 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.GuestDashboardActivity">
+    android:background="#F8F9FA"
+    android:padding="16dp">
 
+    <!-- Top Bar: Greeting and Logout -->
     <TextView
+        android:id="@+id/tvGreeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Guest Dashboard Activity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Hi, guest"
+        android:textSize="16sp"
+        android:textColor="#000000"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:textSize="14sp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/button_rounded_white_outline"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        app:layout_constraintTop_toTopOf="@id/tvGreeting"
+        app:layout_constraintBottom_toBottomOf="@id/tvGreeting"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Welcome Heading -->
+    <TextView
+        android:id="@+id/tvWelcomeTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome Back!"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toBottomOf="@id/tvGreeting"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Subtext -->
+    <TextView
+        android:id="@+id/tvSubtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Explore our menu and manage your reservations"
+        android:textSize="14sp"
+        android:textColor="#666666"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/tvWelcomeTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Browse Menu Card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardBrowseMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toBottomOf="@id/tvSubtext">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="24dp">
+
+            <ImageView
+                android:id="@+id/ivMenuIcon"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_fork_blue"
+                android:background="@drawable/circle_blue_light" />
+
+            <TextView
+                android:id="@+id/tvBrowseMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Browse Menu"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:id="@+id/tvBrowseMenuSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View our delicious offerings"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Book a Table Card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardBookTable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toBottomOf="@id/cardBrowseMenu">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="24dp">
+
+            <ImageView
+                android:id="@+id/ivBookIcon"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_calendar_orange"
+                android:background="@drawable/circle_orange_light" />
+
+            <TextView
+                android:id="@+id/tvBookTable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Book a Table"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:id="@+id/tvBookTableSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Make a new reservation"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- My Reservations Card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardMyReservations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toBottomOf="@id/cardBookTable">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="24dp">
+
+            <ImageView
+                android:id="@+id/ivReservationsIcon"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_list_green"
+                android:background="@drawable/circle_green_light" />
+
+            <TextView
+                android:id="@+id/tvMyReservations"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Reservations"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:id="@+id/tvMyReservationsSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View and manage your bookings"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- My Profile Card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardMyProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:layout_constraintTop_toBottomOf="@id/cardMyReservations">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="24dp">
+
+            <ImageView
+                android:id="@+id/ivProfileIcon"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_person_purple"
+                android:background="@drawable/circle_purple_light" />
+
+            <TextView
+                android:id="@+id/tvMyProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Profile"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:layout_marginTop="16dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

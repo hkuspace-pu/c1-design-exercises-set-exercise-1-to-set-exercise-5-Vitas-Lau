@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="300"
+    android:viewportHeight="300"
+    android:tint="#2196F3">
+
+    <!-- Path 1: The Left Shape (Likely the fork) -->
+    <path
+        android:strokeColor="#2196F3"
+        android:strokeWidth="2"
+        android:fillColor="#00000000"
+        android:pathData="M90,150
+                          L90,240
+                          L120,240
+                          L120,150
+                          C144.813,150 165,129.813 165,105
+                          L165,60
+                          L135,60
+                          L135,105
+                          C135,113.271 128.271,120 120,120
+                          L120,60
+                          L90,60
+                          L90,120
+                          C81.729,120 75,113.271 75,105
+                          L75,60
+                          L45,60
+                          L45,105
+                          C45,129.813 65.187,150 90,150
+                          Z" />
+
+    <!-- Path 2: The Right Shape (Likely the knife) -->
+    <path
+        android:strokeColor="#2196F3"
+        android:strokeWidth="2"
+        android:fillColor="#00000000"
+        android:pathData="M225,150
+                          L210,150
+                          L210,120
+                          C210,108.918 216.039,99.222 225,94.026
+                          L225,150
+                          Z
+                          M180,120
+                          L180,180
+                          L225,180
+                          L225,240
+                          L255,240
+                          L255,60
+                          L240,60
+                          C206.916,60 180,86.916 180,120
+                          Z" />
+</vector>
