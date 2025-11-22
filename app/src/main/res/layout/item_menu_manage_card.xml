@@ -1,13 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp">
+<!-- Similar to guest card but adds: -->
+<LinearLayout android:orientation="horizontal" ...>
+<TextView android:text="Available"/>
+<Switch android:id="@+id/switchAvailable"/>
+    </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Manage Menu Item" />
-
+<LinearLayout android:orientation="horizontal" android:gravity="center">
+<Button android:id="@+id/btnEdit" android:text="Edit" style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+<Button android:id="@+id/btnDelete" android:text="Delete" android:backgroundTint="#FF5252"/>
 </LinearLayout>
