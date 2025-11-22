@@ -1,11 +1,3 @@
 <resources>
-    <string name="app_name">RestaurantHub</string>
-
-    <!-- Login Screen -->
-    <string name="hint_username">Enter your username</string>
-    <string name="hint_password">Enter your password</string>
-    <string name="btn_login">Login</string>
-    <string name="forgot_password">Forgot Password?</string>
-    <string name="or">or</string>
-    <string name="register_as_guest">Register as Guest</string>
+    <string name="app_name">COMP2000HK Software Engineering 2</string>
 </resources>
