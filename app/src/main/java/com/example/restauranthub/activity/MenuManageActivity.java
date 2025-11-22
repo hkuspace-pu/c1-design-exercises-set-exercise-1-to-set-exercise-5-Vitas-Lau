@@ -3,6 +3,7 @@ package com.example.restauranthub.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,7 @@ import java.util.List;
 
 public class MenuManageActivity extends AppCompatActivity {
 
+    private ImageButton btnBack;
     private FloatingActionButton fabAddItem;
     private RecyclerView rvMenuItems;
     private MenuItemAdapter adapter;
@@ -24,6 +26,17 @@ public class MenuManageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_manage);
+
+        // Find back button
+        btnBack = findViewById(R.id.btnBack);
+
+        // Set click listener for back navigation
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Close current activity and return to StaffDashboardActivity
+            }
+        });
 
         // Setup FAB for Add
         fabAddItem = findViewById(R.id.fabAddItem);

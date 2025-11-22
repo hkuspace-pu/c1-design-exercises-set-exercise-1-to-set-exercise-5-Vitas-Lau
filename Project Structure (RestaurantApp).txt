@@ -6,8 +6,9 @@ app/
 │       └── example/
 │           └── restauranthub/
 │               ├── activity/
-│               │   ├── AddEditMenuItemActivity.java
+│               │   ├── AddMenuItemActivity.java
 │               │   ├── BookTableActivity.java
+│               │   ├── EditMenuItemActivity.java
 │               │   ├── GuestDashboardActivity.java
 │               │   ├── LoginActivity.java
 │               │   ├── MenuBrowseActivity.java
@@ -21,7 +22,7 @@ app/
 │               │   └── StaffReservationsActivity.java
 │               └── adapter/
 │                   ├── MenuItemAdapter.java
-│                   └── ReservationAdapter.java
+│                   └── ReservationAdapter.java  # Added/Updated
 ├── res/
 │   ├── drawable/
 │   │   ├── button_black_rounded.xml
@@ -42,12 +43,15 @@ app/
 │   │   ├── ic_list_green.xml
 │   │   ├── ic_person_purple.xml
 │   │   ├── ic_shopping_cart_purple.xml
+│   │   ├── ic_call.xml  # Added
+│   │   ├── ic_cancel_red.xml  # Added
 │   │   ├── item_menu_card.xml
 │   │   ├── item_menu_manage_card.xml
-│   │   └── item_reservation.xml
+│   │   └── item_reservation.xml  # Added
 │   ├── layout/
-│   │   ├── activity_add_edit_menu_item.xml
+│   │   ├── activity_add_menu_item.xml
 │   │   ├── activity_book_table.xml
+│   │   ├── activity_edit_menu_item.xml
 │   │   ├── activity_guest_dashboard.xml
 │   │   ├── activity_login.xml
 │   │   ├── activity_menu_browse.xml
@@ -58,7 +62,7 @@ app/
 │   │   ├── activity_profile.xml
 │   │   ├── activity_register.xml
 │   │   ├── activity_staff_dashboard.xml
-│   │   └── activity_staff_reservations.xml
+│   │   └── activity_staff_reservations.xml  # Added
 │   ├── mipmap/
 │   │   ├── ic_launcher.png
 │   │   └── ic_launcher_round.png
