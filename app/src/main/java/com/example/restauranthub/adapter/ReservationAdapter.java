@@ -1,6 +1,8 @@
 package com.example.restauranthub.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,7 +61,54 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
             }
         });
 
-        // TODO: Add handlers for Call and Cancel if needed
+        // Call button: Show phone number bigger in a dialog
+        holder.btnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Call Guest");
+                TextView phoneView = new TextView(context);
+                phoneView.setText(res.phone);
+                phoneView.setTextSize(24); // Bigger text size
+                phoneView.setPadding(16, 16, 16, 16);
+                builder.setView(phoneView);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
+
+        // Cancel button: Delete booking (remove from list)
+        holder.btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int pos = holder.getAdapterPosition();
+                if (pos == RecyclerView.NO_POSITION) return;
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Cancel Reservation");
+                builder.setMessage("Are you sure you want to cancel this reservation?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        reservations.remove(pos);
+                        notifyItemRemoved(pos);
+                        notifyItemRangeChanged(pos, reservations.size());
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.show();
+            }
+        });
     }
 
     @Override
