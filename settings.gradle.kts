@@ -19,6 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "COMP2000HK Software Engineering 2"
+rootProject.name = "COMP2000HK Software Engineering 2 CW"
 include(":app")
- 

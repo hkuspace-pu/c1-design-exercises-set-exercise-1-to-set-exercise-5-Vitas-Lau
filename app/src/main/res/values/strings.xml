@@ -1,14 +1,3 @@
 <resources>
-    <string name="app_name">RestaurantHub</string>
-    <string name="all">All</string>
-    <string name="starters">Starters</string>
-    <string name="mains">Mains</string>
-    <string name="desserts">Desserts</string>
-    <string name="drinks">Drinks</string>
-    <string name="available">Available</string>
-    <string name="unavailable">Unavailable</string>
-    <string name="edit">Edit</string>
-    <string name="delete">Delete</string>
-    <string name="save">SAVE</string>
-    <string name="cancel">CANCEL</string>
+    <string name="app_name">COMP2000HK Software Engineering 2 CW</string>
 </resources>
