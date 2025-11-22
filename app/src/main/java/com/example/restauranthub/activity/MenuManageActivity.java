@@ -1,20 +1,21 @@
 package com.example.restauranthub.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.restauranthub.R;
 import com.example.restauranthub.adapter.MenuItemAdapter;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MenuManageActivity extends AppCompatActivity {
 
-    private ImageButton btnBack;
+    private FloatingActionButton fabAddItem;
     private RecyclerView rvMenuItems;
     private MenuItemAdapter adapter;
     private List<MenuItem> menuItems;
@@ -24,14 +25,13 @@ public class MenuManageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_manage);
 
-        // Find back button
-        btnBack = findViewById(R.id.btnBack);
-
-        // Set click listener for back navigation
-        btnBack.setOnClickListener(new View.OnClickListener() {
+        // Setup FAB for Add
+        fabAddItem = findViewById(R.id.fabAddItem);
+        fabAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish(); // Close current activity and go back
+                Intent intent = new Intent(MenuManageActivity.this, AddMenuItemActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -77,7 +77,26 @@ public class MenuManageActivity extends AppCompatActivity {
         menuItems.add(new MenuItem("Espresso", 4.99, R.drawable.placeholder_food, true));
         menuItems.add(new MenuItem("Green Tea", 3.99, R.drawable.placeholder_food, true));
 
-        adapter = new MenuItemAdapter(menuItems, true); // true for staff/manage mode
+        adapter = new MenuItemAdapter(menuItems, true, new MenuItemAdapter.OnItemClickListener() {
+            @Override
+            public void onEditClick(MenuItem item) {
+                Intent intent = new Intent(MenuManageActivity.this, EditMenuItemActivity.class);
+                // Pass data to edit activity
+                intent.putExtra("dishName", item.name);
+                intent.putExtra("price", item.price);
+                intent.putExtra("imageRes", item.imageRes);
+                intent.putExtra("available", item.available);
+                // TODO: Pass other fields like description, dietary if added to MenuItem
+                startActivity(intent);
+            }
+
+            @Override
+            public void onDeleteClick(MenuItem item) {
+                // TODO: Handle delete logic if needed (e.g., remove from list and notify adapter)
+                menuItems.remove(item);
+                adapter.notifyDataSetChanged();
+            }
+        });
         rvMenuItems.setAdapter(adapter);
     }
 

@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.restauranthub">
 
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,6 +14,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RestaurantHub">
+
+        <!-- FileProvider for camera -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.restauranthub.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
         <!-- Launcher -->
         <activity
@@ -27,7 +41,8 @@
         <activity android:name=".activity.MenuBrowseActivity" />
         <activity android:name=".activity.MenuManageActivity" />
         <activity android:name=".activity.MenuItemDetailActivity" />
-        <activity android:name=".activity.AddEditMenuItemActivity" />
+        <activity android:name=".activity.AddMenuItemActivity" />
+        <activity android:name=".activity.EditMenuItemActivity" />
         <activity android:name=".activity.BookTableActivity" />
         <activity android:name=".activity.MyReservationsActivity" />
         <activity android:name=".activity.StaffReservationsActivity" />

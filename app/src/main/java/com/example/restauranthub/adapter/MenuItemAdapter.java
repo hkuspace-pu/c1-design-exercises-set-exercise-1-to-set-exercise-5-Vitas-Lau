@@ -3,6 +3,7 @@ package com.example.restauranthub.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -16,10 +17,17 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.ViewHo
 
     private List<MenuManageActivity.MenuItem> menuItems;
     private boolean isManageMode; // To show/hide edit/delete if needed
+    private OnItemClickListener listener;
 
-    public MenuItemAdapter(List<MenuManageActivity.MenuItem> menuItems, boolean isManageMode) {
+    public interface OnItemClickListener {
+        void onEditClick(MenuManageActivity.MenuItem item);
+        void onDeleteClick(MenuManageActivity.MenuItem item);
+    }
+
+    public MenuItemAdapter(List<MenuManageActivity.MenuItem> menuItems, boolean isManageMode, OnItemClickListener listener) {
         this.menuItems = menuItems;
         this.isManageMode = isManageMode;
+        this.listener = listener;
     }
 
     @NonNull
@@ -38,6 +46,26 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.ViewHo
         holder.switchAvailability.setChecked(item.available);
         holder.tvAvailability.setText(item.available ? "Available" : "Unavailable");
         holder.tvAvailability.setTextColor(item.available ? 0xFF000000 : 0xFFFF5252); // Black or red
+
+        // Edit button click
+        holder.btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onEditClick(item);
+                }
+            }
+        });
+
+        // Delete button click (placeholder)
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener != null) {
+                    listener.onDeleteClick(item);
+                }
+            }
+        });
     }
 
     @Override
@@ -49,6 +77,7 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.ViewHo
         ImageView ivThumbnail;
         TextView tvName, tvPrice, tvAvailability;
         Switch switchAvailability;
+        Button btnEdit, btnDelete;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -57,6 +86,8 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.ViewHo
             tvPrice = itemView.findViewById(R.id.tvPrice);
             tvAvailability = itemView.findViewById(R.id.tvAvailability);
             switchAvailability = itemView.findViewById(R.id.switchAvailability);
+            btnEdit = itemView.findViewById(R.id.btnEdit);
+            btnDelete = itemView.findViewById(R.id.btnDelete);
         }
     }
 }
