@@ -39,7 +39,7 @@ public class StaffReservationsActivity extends AppCompatActivity {
         reservations.add(new Reservation("Emily Davis", "18:00", 3, "+1 (555) 456-7890", "Thu, Nov 20, 2025"));
         reservations.add(new Reservation("Robert Wilson", "19:30", 5, "+1 (555) 567-8901", "Fri, Nov 21, 2025"));
 
-        adapter = new ReservationAdapter(reservations);
+        adapter = new ReservationAdapter(this, reservations); // Pass context
         rvReservations.setAdapter(adapter);
 
         // Setup Tabs for filtering
@@ -90,7 +90,7 @@ public class StaffReservationsActivity extends AppCompatActivity {
         adapter.updateReservations(filteredList);
     }
 
-    // Reservation class
+    // Simple POJO for reservation - fields made public
     public static class Reservation {
         public String guestName;
         public String time;

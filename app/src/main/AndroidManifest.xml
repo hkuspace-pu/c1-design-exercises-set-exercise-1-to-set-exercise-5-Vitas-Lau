@@ -46,6 +46,7 @@
         <activity android:name=".activity.BookTableActivity" />
         <activity android:name=".activity.MyReservationsActivity" />
         <activity android:name=".activity.StaffReservationsActivity" />
+        <activity android:name=".activity.EditReservationActivity" />
         <activity android:name=".activity.NotificationSettingsActivity" />
         <activity android:name=".activity.ProfileActivity" />
         <activity android:name=".activity.RegisterActivity" />
