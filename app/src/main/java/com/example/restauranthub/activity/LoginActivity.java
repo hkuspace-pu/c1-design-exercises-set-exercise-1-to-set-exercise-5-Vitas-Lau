@@ -58,5 +58,11 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // In LoginActivity.java onCreate, add after btnLogin
+        TextView tvForgotPassword = findViewById(R.id.tvForgotPassword);
+        tvForgotPassword.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+        });
     }
 }

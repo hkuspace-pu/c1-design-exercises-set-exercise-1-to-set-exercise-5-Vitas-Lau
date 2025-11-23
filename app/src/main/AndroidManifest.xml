@@ -57,6 +57,7 @@
         <activity android:name=".activity.StaffProfileActivity" />
         <activity android:name=".activity.GuestProfileActivity" />
         <activity android:name=".activity.GuestNotificationSettingsActivity" />
+        <activity android:name=".activity.ForgotPasswordActivity" />
 
     </application>
 </manifest>
