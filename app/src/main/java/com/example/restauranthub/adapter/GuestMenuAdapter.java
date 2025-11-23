@@ -1,5 +1,6 @@
 package com.example.restauranthub.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,18 +9,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.restauranthub.R;
-import com.example.restauranthub.activity.MenuBrowseActivity;
+import com.example.restauranthub.activity.MenuItemDetailActivity;
+import com.example.restauranthub.activity.MenuBrowseActivity.MenuItem;
 import java.util.List;
 
 public class GuestMenuAdapter extends RecyclerView.Adapter<GuestMenuAdapter.ViewHolder> {
 
-    private List<MenuBrowseActivity.MenuItem> menuItems;
+    private List<MenuItem> menuItems;
 
-    public GuestMenuAdapter(List<MenuBrowseActivity.MenuItem> menuItems) {
+    public GuestMenuAdapter(List<MenuItem> menuItems) {
         this.menuItems = menuItems;
     }
 
-    public void updateMenuItems(List<MenuBrowseActivity.MenuItem> newItems) {
+    public void updateMenuItems(List<MenuItem> newItems) {
         this.menuItems = newItems;
         notifyDataSetChanged();
     }
@@ -33,10 +35,22 @@ public class GuestMenuAdapter extends RecyclerView.Adapter<GuestMenuAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        MenuBrowseActivity.MenuItem item = menuItems.get(position);
+        MenuItem item = menuItems.get(position);
         holder.ivDish.setImageResource(item.imageRes);
         holder.tvDishName.setText(item.name);
         holder.tvPrice.setText("$" + String.format("%.2f", item.price));
+
+        // Click on the entire card to open detail page
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), MenuItemDetailActivity.class);
+            intent.putExtra("name", item.name);
+            intent.putExtra("price", item.price);
+            intent.putExtra("imageRes", item.imageRes);
+            intent.putExtra("description", item.description); // Dynamic description from model
+            intent.putExtra("category", item.category);
+            intent.putExtra("vegetarian", item.isVegetarian); // Example dietary flag
+            v.getContext().startActivity(intent);
+        });
     }
 
     @Override
