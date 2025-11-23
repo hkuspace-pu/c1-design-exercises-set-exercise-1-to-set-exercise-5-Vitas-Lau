@@ -18,113 +18,130 @@ public class MenuManageActivity extends AppCompatActivity {
 
     private ImageButton btnBack;
     private FloatingActionButton fabAddItem;
+    private TabLayout tabCategories;
     private RecyclerView rvMenuItems;
     private MenuItemAdapter adapter;
-    private List<MenuItem> menuItems;
+    private List<MenuItem> allMenuItems = new ArrayList<>();
+    private List<MenuItem> filteredItems = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_manage);
 
-        // Find back button
         btnBack = findViewById(R.id.btnBack);
-
-        // Set click listener for back navigation
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish(); // Close current activity and return to StaffDashboardActivity
-            }
-        });
-
-        // Setup FAB for Add
         fabAddItem = findViewById(R.id.fabAddItem);
-        fabAddItem.setOnClickListener(new View.OnClickListener() {
+        tabCategories = findViewById(R.id.tabCategories);
+        rvMenuItems = findViewById(R.id.rvMenuItems);
+
+        rvMenuItems.setLayoutManager(new GridLayoutManager(this, 2));
+
+        // Dummy data with category
+        allMenuItems.add(new MenuItem("Garlic Bread", 6.99, R.drawable.placeholder_food, true, "Starters"));
+        allMenuItems.add(new MenuItem("Spring Rolls", 8.99, R.drawable.placeholder_food, true, "Starters"));
+        allMenuItems.add(new MenuItem("Bruschetta", 7.99, R.drawable.placeholder_food, true, "Starters"));
+        allMenuItems.add(new MenuItem("Caesar Salad", 9.49, R.drawable.placeholder_food, true, "Starters"));
+        allMenuItems.add(new MenuItem("Cheese Nachos", 10.99, R.drawable.placeholder_food, false, "Starters"));
+
+        allMenuItems.add(new MenuItem("Spaghetti Carbonara", 18.99, R.drawable.placeholder_food, true, "Mains"));
+        allMenuItems.add(new MenuItem("Grilled Ribeye Steak", 32.99, R.drawable.placeholder_food, false, "Mains"));
+        allMenuItems.add(new MenuItem("Grilled Salmon", 28.99, R.drawable.placeholder_food, false, "Mains"));
+        allMenuItems.add(new MenuItem("Vegetable Stir Fry", 15.49, R.drawable.placeholder_food, true, "Mains"));
+        allMenuItems.add(new MenuItem("Chicken Curry", 17.99, R.drawable.placeholder_food, true, "Mains"));
+        allMenuItems.add(new MenuItem("Beef Burger", 14.99, R.drawable.placeholder_food, true, "Mains"));
+
+        allMenuItems.add(new MenuItem("Chocolate Lava Cake", 7.99, R.drawable.placeholder_food, true, "Desserts"));
+        allMenuItems.add(new MenuItem("Tiramisu", 8.49, R.drawable.placeholder_food, true, "Desserts"));
+        allMenuItems.add(new MenuItem("Cheesecake", 6.99, R.drawable.placeholder_food, false, "Desserts"));
+        allMenuItems.add(new MenuItem("Ice Cream Sundae", 5.99, R.drawable.placeholder_food, true, "Desserts"));
+
+        allMenuItems.add(new MenuItem("Coca Cola", 2.99, R.drawable.placeholder_food, true, "Drinks"));
+        allMenuItems.add(new MenuItem("Lemonade", 3.49, R.drawable.placeholder_food, true, "Drinks"));
+        allMenuItems.add(new MenuItem("Red Wine", 25.99, R.drawable.placeholder_food, false, "Drinks"));
+        allMenuItems.add(new MenuItem("Espresso", 4.99, R.drawable.placeholder_food, true, "Drinks"));
+        allMenuItems.add(new MenuItem("Green Tea", 3.99, R.drawable.placeholder_food, true, "Drinks"));
+
+        adapter = new MenuItemAdapter(allMenuItems, true, new MenuItemAdapter.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MenuManageActivity.this, AddMenuItemActivity.class);
+            public void onEditClick(MenuItem item) {
+                Intent intent = new Intent(MenuManageActivity.this, EditMenuItemActivity.class);
+                intent.putExtra("dishName", item.name);
+                intent.putExtra("price", item.price);
+                intent.putExtra("imageRes", item.imageRes);
+                intent.putExtra("available", item.available);
+                intent.putExtra("category", item.category); // Pass category if needed
                 startActivity(intent);
             }
+
+            @Override
+            public void onDeleteClick(MenuItem item) {
+                allMenuItems.remove(item);
+                filterMenuItems(tabCategories.getSelectedTabPosition() == 0 ? "All" : tabCategories.getTabAt(tabCategories.getSelectedTabPosition()).getText().toString());
+            }
         });
+        rvMenuItems.setAdapter(adapter);
 
         // Setup Tabs
-        TabLayout tabCategories = findViewById(R.id.tabCategories);
         tabCategories.addTab(tabCategories.newTab().setText("All"));
         tabCategories.addTab(tabCategories.newTab().setText("Starters"));
         tabCategories.addTab(tabCategories.newTab().setText("Mains"));
         tabCategories.addTab(tabCategories.newTab().setText("Desserts"));
         tabCategories.addTab(tabCategories.newTab().setText("Drinks"));
 
-        // Setup RecyclerView (Grid with 2 columns)
-        rvMenuItems = findViewById(R.id.rvMenuItems);
-        rvMenuItems.setLayoutManager(new GridLayoutManager(this, 2));
+        // Initial filter - All
+        filterMenuItems("All");
 
-        // Dummy samples for testing (expanded with more items, using placeholder)
-        menuItems = new ArrayList<>();
-        // Starters
-        menuItems.add(new MenuItem("Garlic Bread", 6.99, R.drawable.placeholder_food, true));
-        menuItems.add(new MenuItem("Spring Rolls", 8.99, R.drawable.placeholder_food, true));
-        menuItems.add(new MenuItem("Bruschetta", 7.99, R.drawable.placeholder_food, true));
-        menuItems.add(new MenuItem("Caesar Salad", 9.49, R.drawable.placeholder_food, true));
-        menuItems.add(new MenuItem("Cheese Nachos", 10.99, R.drawable.placeholder_food, false));
-
-        // Mains
-        menuItems.add(new MenuItem("Spaghetti Carbonara", 18.99, R.drawable.placeholder_food, true));
-        menuItems.add(new MenuItem("Grilled Ribeye Steak", 32.99, R.drawable.placeholder_food, false));
-        menuItems.add(new MenuItem("Grilled Salmon", 28.99, R.drawable.placeholder_food, false));
-        menuItems.add(new MenuItem("Vegetable Stir Fry", 15.49, R.drawable.placeholder_food, true));
-        menuItems.add(new MenuItem("Chicken Curry", 17.99, R.drawable.placeholder_food, true));
-        menuItems.add(new MenuItem("Beef Burger", 14.99, R.drawable.placeholder_food, true));
-
-        // Desserts
-        menuItems.add(new MenuItem("Chocolate Lava Cake", 7.99, R.drawable.placeholder_food, true));
-        menuItems.add(new MenuItem("Tiramisu", 8.49, R.drawable.placeholder_food, true));
-        menuItems.add(new MenuItem("Cheesecake", 6.99, R.drawable.placeholder_food, false));
-        menuItems.add(new MenuItem("Ice Cream Sundae", 5.99, R.drawable.placeholder_food, true));
-
-        // Drinks
-        menuItems.add(new MenuItem("Coca Cola", 2.99, R.drawable.placeholder_food, true));
-        menuItems.add(new MenuItem("Lemonade", 3.49, R.drawable.placeholder_food, true));
-        menuItems.add(new MenuItem("Red Wine", 25.99, R.drawable.placeholder_food, false));
-        menuItems.add(new MenuItem("Espresso", 4.99, R.drawable.placeholder_food, true));
-        menuItems.add(new MenuItem("Green Tea", 3.99, R.drawable.placeholder_food, true));
-
-        adapter = new MenuItemAdapter(menuItems, true, new MenuItemAdapter.OnItemClickListener() {
+        tabCategories.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onEditClick(MenuItem item) {
-                Intent intent = new Intent(MenuManageActivity.this, EditMenuItemActivity.class);
-                // Pass data to edit activity
-                intent.putExtra("dishName", item.name);
-                intent.putExtra("price", item.price);
-                intent.putExtra("imageRes", item.imageRes);
-                intent.putExtra("available", item.available);
-                // TODO: Pass other fields like description, dietary if added to MenuItem
-                startActivity(intent);
+            public void onTabSelected(TabLayout.Tab tab) {
+                String category = tab.getText().toString();
+                filterMenuItems(category);
             }
 
             @Override
-            public void onDeleteClick(MenuItem item) {
-                // TODO: Handle delete logic if needed (e.g., remove from list and notify adapter)
-                menuItems.remove(item);
-                adapter.notifyDataSetChanged();
+            public void onTabUnselected(TabLayout.Tab tab) {}
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                String category = tab.getText().toString();
+                filterMenuItems(category);
             }
         });
-        rvMenuItems.setAdapter(adapter);
+
+        // FAB - Add Item
+        fabAddItem.setOnClickListener(v -> {
+            Intent intent = new Intent(MenuManageActivity.this, AddMenuItemActivity.class);
+            startActivity(intent);
+        });
+
+        // Back button
+        btnBack.setOnClickListener(v -> finish());
     }
 
-    // Simple POJO for menu item (for dummy data) - make fields public
+    private void filterMenuItems(String category) {
+        filteredItems.clear();
+        for (MenuItem item : allMenuItems) {
+            if ("All".equals(category) || category.equals(item.category)) {
+                filteredItems.add(item);
+            }
+        }
+        adapter.updateMenuItems(filteredItems);
+    }
+
+    // MenuItem model with category
     public static class MenuItem {
         public String name;
         public double price;
         public int imageRes;
         public boolean available;
+        public String category;
 
-        public MenuItem(String name, double price, int imageRes, boolean available) {
+        public MenuItem(String name, double price, int imageRes, boolean available, String category) {
             this.name = name;
             this.price = price;
             this.imageRes = imageRes;
             this.available = available;
+            this.category = category;
         }
     }
 }

@@ -11,12 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.restauranthub.R;
 import com.example.restauranthub.activity.MenuManageActivity;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.ViewHolder> {
 
-    private List<MenuManageActivity.MenuItem> menuItems;
-    private boolean isManageMode; // To show/hide edit/delete if needed
+    private List<MenuManageActivity.MenuItem> menuItems = new ArrayList<>();
+    private boolean isManageMode;
     private OnItemClickListener listener;
 
     public interface OnItemClickListener {
@@ -28,6 +29,11 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.ViewHo
         this.menuItems = menuItems;
         this.isManageMode = isManageMode;
         this.listener = listener;
+    }
+
+    public void updateMenuItems(List<MenuManageActivity.MenuItem> newItems) {
+        this.menuItems = newItems;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -44,28 +50,20 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.ViewHo
         holder.tvName.setText(item.name);
         holder.tvPrice.setText("$" + String.format("%.2f", item.price));
         holder.switchAvailability.setChecked(item.available);
-        holder.tvAvailability.setText(item.available ? "Available" : "Unavailable");
-        holder.tvAvailability.setTextColor(item.available ? 0xFF000000 : 0xFFFF5252); // Black or red
+        holder.tvAvailability.setText(item.available ? "Available" : "Unavailable"); // Fixed line
+        holder.tvAvailability.setTextColor(item.available ? 0xFF000000 : 0xFFFF5252);
 
-        // Edit button click
-        holder.btnEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (listener != null) {
-                    listener.onEditClick(item);
-                }
-            }
-        });
-
-        // Delete button click (placeholder)
-        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (listener != null) {
-                    listener.onDeleteClick(item);
-                }
-            }
-        });
+        if (isManageMode) {
+            holder.btnEdit.setVisibility(View.VISIBLE);
+            holder.btnDelete.setVisibility(View.VISIBLE);
+            holder.btnEdit.setOnClickListener(v -> listener.onEditClick(item));
+            holder.btnDelete.setOnClickListener(v -> listener.onDeleteClick(item));
+        } else {
+            holder.btnEdit.setVisibility(View.GONE);
+            holder.btnDelete.setVisibility(View.GONE);
+            holder.switchAvailability.setVisibility(View.GONE);
+            holder.tvAvailability.setVisibility(View.GONE);
+        }
     }
 
     @Override
