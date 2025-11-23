@@ -73,7 +73,7 @@ public class GuestProfileActivity extends AppCompatActivity {
 
         // Notification Settings
         btnNotificationSettings.setOnClickListener(v -> {
-            startActivity(new Intent(this, NotificationSettingsActivity.class));
+            startActivity(new Intent(this, GuestNotificationSettingsActivity.class));
         });
 
         // Change Password (demo)

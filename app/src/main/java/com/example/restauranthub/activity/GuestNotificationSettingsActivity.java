@@ -12,26 +12,25 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.restauranthub.R;
 
-public class NotificationSettingsActivity extends AppCompatActivity {
+public class GuestNotificationSettingsActivity extends AppCompatActivity {
 
     private ImageButton btnBack;
     private Switch switchEnableAll;
-    private CheckBox cbNewReservations, cbCanceledReservations, cbUpcomingReservations, cbMenuChanges, cbSystemAlerts;
+    private CheckBox cbReservationConfirmation, cbReservationReminders, cbMenuUpdates, cbSpecialOffers;
     private Switch switchPushNotifications, switchEmail, switchSMS;
     private Button btnSavePreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_notification_settings);
+        setContentView(R.layout.activity_guest_notification_settings);
 
         btnBack = findViewById(R.id.btnBack);
         switchEnableAll = findViewById(R.id.switchEnableAll);
-        cbNewReservations = findViewById(R.id.cbNewReservations);
-        cbCanceledReservations = findViewById(R.id.cbCanceledReservations);
-        cbUpcomingReservations = findViewById(R.id.cbUpcomingReservations);
-        cbMenuChanges = findViewById(R.id.cbMenuChanges);
-        cbSystemAlerts = findViewById(R.id.cbSystemAlerts);
+        cbReservationConfirmation = findViewById(R.id.cbReservationConfirmation);
+        cbReservationReminders = findViewById(R.id.cbReservationReminders);
+        cbMenuUpdates = findViewById(R.id.cbMenuUpdates);
+        cbSpecialOffers = findViewById(R.id.cbSpecialOffers);
         switchPushNotifications = findViewById(R.id.switchPushNotifications);
         switchEmail = findViewById(R.id.switchEmail);
         switchSMS = findViewById(R.id.switchSMS);
@@ -39,19 +38,17 @@ public class NotificationSettingsActivity extends AppCompatActivity {
 
         // Master toggle - enable/disable all checkboxes
         switchEnableAll.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            cbNewReservations.setChecked(isChecked);
-            cbCanceledReservations.setChecked(isChecked);
-            cbUpcomingReservations.setChecked(isChecked);
-            cbMenuChanges.setChecked(isChecked);
-            cbSystemAlerts.setChecked(isChecked);
+            cbReservationConfirmation.setChecked(isChecked);
+            cbReservationReminders.setChecked(isChecked);
+            cbMenuUpdates.setChecked(isChecked);
+            cbSpecialOffers.setChecked(isChecked);
         });
 
         // Individual checkboxes - update master toggle
-        cbNewReservations.setOnCheckedChangeListener((buttonView, isChecked) -> updateMasterToggle());
-        cbCanceledReservations.setOnCheckedChangeListener((buttonView, isChecked) -> updateMasterToggle());
-        cbUpcomingReservations.setOnCheckedChangeListener((buttonView, isChecked) -> updateMasterToggle());
-        cbMenuChanges.setOnCheckedChangeListener((buttonView, isChecked) -> updateMasterToggle());
-        cbSystemAlerts.setOnCheckedChangeListener((buttonView, isChecked) -> updateMasterToggle());
+        cbReservationConfirmation.setOnCheckedChangeListener((buttonView, isChecked) -> updateMasterToggle());
+        cbReservationReminders.setOnCheckedChangeListener((buttonView, isChecked) -> updateMasterToggle());
+        cbMenuUpdates.setOnCheckedChangeListener((buttonView, isChecked) -> updateMasterToggle());
+        cbSpecialOffers.setOnCheckedChangeListener((buttonView, isChecked) -> updateMasterToggle());
 
         // Back button
         btnBack.setOnClickListener(v -> finish());
@@ -64,8 +61,8 @@ public class NotificationSettingsActivity extends AppCompatActivity {
     }
 
     private void updateMasterToggle() {
-        boolean allChecked = cbNewReservations.isChecked() && cbCanceledReservations.isChecked() &&
-                cbUpcomingReservations.isChecked() && cbMenuChanges.isChecked() && cbSystemAlerts.isChecked();
+        boolean allChecked = cbReservationConfirmation.isChecked() && cbReservationReminders.isChecked() &&
+                cbMenuUpdates.isChecked() && cbSpecialOffers.isChecked();
         switchEnableAll.setChecked(allChecked);
     }
 }
