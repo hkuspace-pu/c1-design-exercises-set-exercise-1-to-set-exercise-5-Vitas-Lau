@@ -76,7 +76,7 @@ public class StaffProfileActivity extends AppCompatActivity {
 
         // Change Password (demo)
         btnChangePassword.setOnClickListener(v -> {
-            Toast.makeText(this, "Change Password clicked", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, ChangePasswordActivity.class));
         });
 
         // Logout
