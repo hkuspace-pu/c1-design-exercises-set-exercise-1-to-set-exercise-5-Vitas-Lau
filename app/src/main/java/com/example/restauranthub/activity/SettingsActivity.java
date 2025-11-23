@@ -29,10 +29,10 @@ public class SettingsActivity extends AppCompatActivity {
 
         rvSettings.setLayoutManager(new LinearLayoutManager(this));
 
-        // Dummy settings items (removed non-existent activities; add when created)
-        settingsList.add(new SettingsItem("My Profile", "View and edit your profile information", R.drawable.ic_person_purple, ProfileActivity.class));
+        // Settings items
+        settingsList.add(new SettingsItem("My Profile", "View and edit your profile information", R.drawable.ic_person_purple, StaffProfileActivity.class));
         settingsList.add(new SettingsItem("Notification Settings", "Manage your notification preferences", R.drawable.ic_notification, NotificationSettingsActivity.class));
-        // Add Security and Help when activities are created
+        // Add more when created
         // settingsList.add(new SettingsItem("Security", "Change password and security options", R.drawable.ic_security, SecurityActivity.class));
         // settingsList.add(new SettingsItem("Help & Support", "Get help and contact support", R.drawable.ic_help, HelpSupportActivity.class));
 
@@ -43,7 +43,7 @@ public class SettingsActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> finish());
     }
 
-    // Simple model for settings item - make fields public
+    // Simple model for settings item - fields are public
     public static class SettingsItem {
         public String title;
         public String subtitle;

@@ -52,9 +52,10 @@
         <activity android:name=".activity.StaffReservationsActivity" />
         <activity android:name=".activity.EditReservationActivity" />
         <activity android:name=".activity.NotificationSettingsActivity" />
-        <activity android:name=".activity.ProfileActivity" />
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.SettingsActivity" />
+        <activity android:name=".activity.StaffProfileActivity" />
+        <activity android:name=".activity.GuestProfileActivity" />
 
     </application>
 </manifest>

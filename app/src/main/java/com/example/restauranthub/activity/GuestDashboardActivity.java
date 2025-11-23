@@ -3,7 +3,7 @@ package com.example.restauranthub.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.Button;  // Import for logout button
 import androidx.cardview.widget.CardView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.restauranthub.R;
@@ -24,16 +24,6 @@ public class GuestDashboardActivity extends AppCompatActivity {
         cardMyReservations = findViewById(R.id.cardMyReservations);
         cardMyProfile = findViewById(R.id.cardMyProfile);
         btnLogout = findViewById(R.id.btnLogout);
-
-        // Set click listener for Logout
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(GuestDashboardActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish(); // Close dashboard
-            }
-        });
 
         // Set click listeners for navigation
         cardBrowseMenu.setOnClickListener(new View.OnClickListener() {
@@ -63,8 +53,18 @@ public class GuestDashboardActivity extends AppCompatActivity {
         cardMyProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(GuestDashboardActivity.this, ProfileActivity.class);
+                Intent intent = new Intent(GuestDashboardActivity.this, GuestProfileActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        // Logout
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GuestDashboardActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
