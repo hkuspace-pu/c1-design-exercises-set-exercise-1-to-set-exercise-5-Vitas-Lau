@@ -44,11 +44,12 @@ public class StaffDashboardActivity extends AppCompatActivity {
             });
         }
 
+        // In StaffDashboardActivity.java onCreate, update the settings card listener
         if (cardSettings != null) {
             cardSettings.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(StaffDashboardActivity.this, NotificationSettingsActivity.class);
+                    Intent intent = new Intent(StaffDashboardActivity.this, SettingsActivity.class);
                     startActivity(intent);
                 }
             });
