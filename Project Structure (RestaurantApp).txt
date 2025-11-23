@@ -6,10 +6,11 @@ app/
 │       └── example/
 │           └── restauranthub/
 │               ├── activity/
+│               │   ├── AddEditMenuItemActivity.java
 │               │   ├── AddMenuItemActivity.java
 │               │   ├── BookTableActivity.java
 │               │   ├── EditMenuItemActivity.java
-│               │   ├── EditReservationActivity.java  # Added
+│               │   ├── EditReservationActivity.java
 │               │   ├── GuestDashboardActivity.java
 │               │   ├── LoginActivity.java
 │               │   ├── MenuBrowseActivity.java
@@ -27,32 +28,45 @@ app/
 ├── res/
 │   ├── drawable/
 │   │   ├── button_black_rounded.xml
-│   │   ├── button_red_outline_rounded.xml  # Added
+│   │   ├── button_red_outline_rounded.xml
 │   │   ├── button_rounded_white_outline.xml
+│   │   ├── button_white_rounded.xml
 │   │   ├── circle_background_white.xml
 │   │   ├── circle_blue_light.xml
 │   │   ├── circle_green_light.xml
 │   │   ├── circle_orange_light.xml
 │   │   ├── circle_purple_background.xml
 │   │   ├── circle_purple_light.xml
+│   │   ├── circle_white_background.xml
+│   │   ├── dashed_border.xml
 │   │   ├── edittext_rounded_background.xml
+│   │   ├── ic_add.xml
 │   │   ├── ic_back_arrow.xml
 │   │   ├── ic_calendar_green.xml
 │   │   ├── ic_calendar_orange.xml
+│   │   ├── ic_call.xml
+│   │   ├── ic_call_gray.xml
+│   │   ├── ic_camera.xml
+│   │   ├── ic_cancel_red.xml
+│   │   ├── ic_close_red.xml
+│   │   ├── ic_delete_red.xml
 │   │   ├── ic_document_blue.xml
+│   │   ├── ic_edit.xml
 │   │   ├── ic_fork_blue.xml
 │   │   ├── ic_gear_gray.xml
 │   │   ├── ic_list_green.xml
+│   │   ├── ic_person_gray.xml
 │   │   ├── ic_person_purple.xml
 │   │   ├── ic_shopping_cart_purple.xml
-│   │   ├── item_menu_card.xml
-│   │   ├── item_menu_manage_card.xml
-│   │   └── item_reservation.xml
+│   │   ├── placeholder_dish.xml
+│   │   ├── placeholder_food.xml
+│   │   └── placeholder_image.xml
 │   ├── layout/
+│   │   ├── activity_add_edit_menu_item.xml
 │   │   ├── activity_add_menu_item.xml
 │   │   ├── activity_book_table.xml
 │   │   ├── activity_edit_menu_item.xml
-│   │   ├── activity_edit_reservation.xml  # Added
+│   │   ├── activity_edit_reservation.xml
 │   │   ├── activity_guest_dashboard.xml
 │   │   ├── activity_login.xml
 │   │   ├── activity_menu_browse.xml
@@ -63,7 +77,10 @@ app/
 │   │   ├── activity_profile.xml
 │   │   ├── activity_register.xml
 │   │   ├── activity_staff_dashboard.xml
-│   │   └── activity_staff_reservations.xml
+│   │   ├── activity_staff_reservations.xml
+│   │   ├── item_menu_card.xml
+│   │   ├── item_menu_manage_card.xml
+│   │   └── item_reservation.xml
 │   ├── mipmap/
 │   │   ├── ic_launcher.png
 │   │   └── ic_launcher_round.png
@@ -74,7 +91,8 @@ app/
 │   │   └── themes.xml
 │   └── xml/
 │       ├── backup_rules.xml
-│       └── data_extraction_rules.xml
+│       ├── data_extraction_rules.xml
+│       └── file_paths.xml
 ├── build.gradle.kts
 ├── libs.versions.toml
 └── proguard-rules.pro

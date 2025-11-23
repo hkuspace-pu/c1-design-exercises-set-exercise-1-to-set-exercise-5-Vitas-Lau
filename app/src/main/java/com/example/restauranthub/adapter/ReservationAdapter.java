@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +70,7 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
                 builder.setTitle("Call Guest");
                 TextView phoneView = new TextView(context);
                 phoneView.setText(res.phone);
-                phoneView.setTextSize(24); // Bigger text size
+                phoneView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24f); // Fixed deprecation: Added unit SP
                 phoneView.setPadding(16, 16, 16, 16);
                 builder.setView(phoneView);
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
