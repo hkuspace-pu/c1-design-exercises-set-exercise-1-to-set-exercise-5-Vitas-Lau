@@ -124,14 +124,30 @@ public class AddMenuItemActivity extends AppCompatActivity {
 
     private void saveMenuItem() {
         // In a real app, this would save to a database.
-        // For now, we'll just return a result to the caller or show a success message.
-        
-        // Create intent to return data if needed, or just finish
+        // Return data to caller
         Intent resultIntent = new Intent();
-        // Put extras...
+        resultIntent.putExtra("dishName", etDishName.getText().toString());
+        resultIntent.putExtra("description", etDescription.getText().toString());
+        try {
+            resultIntent.putExtra("price", Double.parseDouble(etPrice.getText().toString()));
+        } catch (NumberFormatException e) {
+            resultIntent.putExtra("price", 0.0);
+        }
+        resultIntent.putExtra("available", cbItemAvailable.isChecked());
+
+        // Pass back dietary flags if needed
+        resultIntent.putExtra("vegetarian", cbVegetarian.isChecked());
+        resultIntent.putExtra("vegan", cbVegan.isChecked());
+        resultIntent.putExtra("glutenFree", cbGlutenFree.isChecked());
+        resultIntent.putExtra("dairyFree", cbDairyFree.isChecked());
+        resultIntent.putExtra("nutFree", cbNutFree.isChecked());
+        resultIntent.putExtra("spicy", cbSpicy.isChecked());
         
+        // Pass category if we had the spinner set up, for now default
+        // resultIntent.putExtra("category", spCategory.getSelectedItem().toString());
+
+        setResult(RESULT_OK, resultIntent);
         Toast.makeText(this, "Menu item added!", Toast.LENGTH_SHORT).show();
-        setResult(RESULT_OK);
         finish();
     }
 

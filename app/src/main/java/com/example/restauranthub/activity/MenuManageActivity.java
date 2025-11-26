@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +27,56 @@ public class MenuManageActivity extends AppCompatActivity {
     private MenuItemAdapter adapter;
     private List<MenuItem> allMenuItems = new ArrayList<>();
     private List<MenuItem> filteredItems = new ArrayList<>();
+    private MenuItem currentEditingItem = null;
+
+    private final ActivityResultLauncher<Intent> addMenuItemLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        // Extract data from result intent
+                        String name = result.getData().getStringExtra("dishName");
+                        String description = result.getData().getStringExtra("description"); // description not stored in model yet
+                        double price = result.getData().getDoubleExtra("price", 0.0);
+                        boolean available = result.getData().getBooleanExtra("available", true);
+                        // Default category for now, or get from intent if added
+                        String category = "Mains"; 
+                        // Default placeholder image for now
+                        int imageRes = R.drawable.placeholder_food;
+
+                        // Create new item and add to list
+                        MenuItem newItem = new MenuItem(name, price, imageRes, available, category);
+                        allMenuItems.add(newItem);
+                        
+                        // Refresh list
+                        String currentTab = tabCategories.getTabAt(tabCategories.getSelectedTabPosition()).getText().toString();
+                        filterMenuItems(currentTab);
+                    }
+                }
+            }
+    );
+
+    private final ActivityResultLauncher<Intent> editMenuItemLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null && currentEditingItem != null) {
+                        // Update current item
+                        currentEditingItem.name = result.getData().getStringExtra("dishName");
+                        currentEditingItem.price = result.getData().getDoubleExtra("price", 0.0);
+                        currentEditingItem.available = result.getData().getBooleanExtra("available", true);
+                        // Update other fields if model supported (description, dietary info)
+
+                        // Refresh list
+                        String currentTab = tabCategories.getTabAt(tabCategories.getSelectedTabPosition()).getText().toString();
+                        filterMenuItems(currentTab);
+                        currentEditingItem = null;
+                    }
+                }
+            }
+    );
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +118,14 @@ public class MenuManageActivity extends AppCompatActivity {
         adapter = new MenuItemAdapter(allMenuItems, true, new MenuItemAdapter.OnItemClickListener() {
             @Override
             public void onEditClick(MenuItem item) {
+                currentEditingItem = item;
                 Intent intent = new Intent(MenuManageActivity.this, EditMenuItemActivity.class);
                 intent.putExtra("dishName", item.name);
                 intent.putExtra("price", item.price);
                 intent.putExtra("imageRes", item.imageRes);
                 intent.putExtra("available", item.available);
                 intent.putExtra("category", item.category); // Pass category if needed
-                startActivity(intent);
+                editMenuItemLauncher.launch(intent);
             }
 
             @Override
@@ -111,7 +166,7 @@ public class MenuManageActivity extends AppCompatActivity {
         // FAB - Add Item
         fabAddItem.setOnClickListener(v -> {
             Intent intent = new Intent(MenuManageActivity.this, AddMenuItemActivity.class);
-            startActivity(intent);
+            addMenuItemLauncher.launch(intent);
         });
 
         // Back button
