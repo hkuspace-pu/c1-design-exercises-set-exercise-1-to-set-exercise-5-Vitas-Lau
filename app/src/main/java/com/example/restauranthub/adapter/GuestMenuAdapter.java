@@ -7,25 +7,32 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.restauranthub.R;
 import com.example.restauranthub.activity.MenuItemDetailActivity;
 import com.example.restauranthub.activity.MenuBrowseActivity.MenuItem;
-import java.util.List;
 
-public class GuestMenuAdapter extends RecyclerView.Adapter<GuestMenuAdapter.ViewHolder> {
+public class GuestMenuAdapter extends ListAdapter<MenuItem, GuestMenuAdapter.ViewHolder> {
 
-    private List<MenuItem> menuItems;
-
-    public GuestMenuAdapter(List<MenuItem> menuItems) {
-        this.menuItems = menuItems;
+    public GuestMenuAdapter() {
+        super(DIFF_CALLBACK);
     }
 
-    public void updateMenuItems(List<MenuItem> newItems) {
-        this.menuItems = newItems;
-        notifyDataSetChanged();
-    }
+    private static final DiffUtil.ItemCallback<MenuItem> DIFF_CALLBACK =
+            new DiffUtil.ItemCallback<MenuItem>() {
+                @Override
+                public boolean areItemsTheSame(@NonNull MenuItem oldItem, @NonNull MenuItem newItem) {
+                    return oldItem.name.equals(newItem.name);
+                }
+
+                @Override
+                public boolean areContentsTheSame(@NonNull MenuItem oldItem, @NonNull MenuItem newItem) {
+                    return oldItem.equals(newItem);
+                }
+            };
 
     @NonNull
     @Override
@@ -36,7 +43,7 @@ public class GuestMenuAdapter extends RecyclerView.Adapter<GuestMenuAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        MenuItem item = menuItems.get(position);
+        MenuItem item = getItem(position);
         
         // Load image using Glide
         Glide.with(holder.itemView.getContext())
@@ -54,17 +61,12 @@ public class GuestMenuAdapter extends RecyclerView.Adapter<GuestMenuAdapter.View
             Intent intent = new Intent(v.getContext(), MenuItemDetailActivity.class);
             intent.putExtra("name", item.name);
             intent.putExtra("price", item.price);
-            intent.putExtra("imageUrl", item.imageUrl); // Pass URL instead of Res ID
+            intent.putExtra("imageUrl", item.imageUrl);
             intent.putExtra("description", item.description);
             intent.putExtra("category", item.category);
             intent.putExtra("vegetarian", item.isVegetarian);
             v.getContext().startActivity(intent);
         });
-    }
-
-    @Override
-    public int getItemCount() {
-        return menuItems.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

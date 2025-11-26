@@ -5,58 +5,66 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;   // Added missing import
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.restauranthub.R;
 import com.example.restauranthub.adapter.GuestReservationAdapter;
+import com.example.restauranthub.viewmodel.MyReservationsViewModel;
 import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MyReservationsActivity extends AppCompatActivity {
 
     private ImageButton btnBack;
     private TabLayout tabReservations;
     private RecyclerView rvReservations;
-    private View cardEmptyState;          // Changed to View (contains tvEmptyTitle)
+    private View cardEmptyState;
     private Button btnBookTableEmpty;
-    private TextView tvEmptyTitle;        // Added field for clean access
+    private TextView tvEmptyTitle;
     private GuestReservationAdapter adapter;
-    private List<Reservation> allReservations = new ArrayList<>();
-    private List<Reservation> upcomingReservations = new ArrayList<>();
-    private List<Reservation> pastReservations = new ArrayList<>();
+    private MyReservationsViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_reservations);
 
+        viewModel = new ViewModelProvider(this).get(MyReservationsViewModel.class);
+
         btnBack = findViewById(R.id.btnBack);
         tabReservations = findViewById(R.id.tabReservations);
         rvReservations = findViewById(R.id.rvReservations);
         cardEmptyState = findViewById(R.id.cardEmptyState);
-        tvEmptyTitle = findViewById(R.id.tvEmptyTitle);   // Find once
+        tvEmptyTitle = findViewById(R.id.tvEmptyTitle);
         btnBookTableEmpty = findViewById(R.id.btnBookTableEmpty);
 
         rvReservations.setLayoutManager(new LinearLayoutManager(this));
-
-        // Dummy data
-        allReservations.add(new Reservation("Table for 4", "18:30", "Confirmed", "2025-11-25"));
-        allReservations.add(new Reservation("Table for 2", "19:00", "Confirmed", "2025-11-26"));
-        allReservations.add(new Reservation("Table for 6", "20:00", "Confirmed", "2025-11-20")); // Past
-
-        // Filter
-        upcomingReservations = filterUpcoming();
-        pastReservations = filterPast();
-
-        adapter = new GuestReservationAdapter(this, upcomingReservations);
+        adapter = new GuestReservationAdapter(this, new ArrayList<>());
         rvReservations.setAdapter(adapter);
 
-        updateEmptyState(upcomingReservations.isEmpty());
+        // Observe upcoming reservations
+        viewModel.getUpcomingReservations().observe(this, reservations -> {
+            if (tabReservations.getSelectedTabPosition() == 0) {
+                adapter.updateReservations(reservations);
+                updateEmptyState(reservations.isEmpty());
+            }
+        });
 
-        // Tabs
+        // Observe past reservations
+        viewModel.getPastReservations().observe(this, reservations -> {
+            if (tabReservations.getSelectedTabPosition() == 1) {
+                adapter.updateReservations(reservations);
+                updateEmptyState(reservations.isEmpty());
+            }
+        });
+
+
+        viewModel.loadReservations();
+
+
         tabReservations.addTab(tabReservations.newTab().setText("Upcoming"));
         tabReservations.addTab(tabReservations.newTab().setText("Past"));
 
@@ -64,11 +72,11 @@ public class MyReservationsActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 if (tab.getPosition() == 0) {
-                    adapter.updateReservations(upcomingReservations);
-                    updateEmptyState(upcomingReservations.isEmpty());
+                    adapter.updateReservations(viewModel.getUpcomingReservations().getValue());
+                    updateEmptyState(viewModel.getUpcomingReservations().getValue().isEmpty());
                 } else {
-                    adapter.updateReservations(pastReservations);
-                    updateEmptyState(pastReservations.isEmpty());
+                    adapter.updateReservations(viewModel.getPastReservations().getValue());
+                    updateEmptyState(viewModel.getPastReservations().getValue().isEmpty());
                 }
             }
 
@@ -76,33 +84,11 @@ public class MyReservationsActivity extends AppCompatActivity {
             @Override public void onTabReselected(TabLayout.Tab tab) {}
         });
 
-        // Book a Table button in empty state
         btnBookTableEmpty.setOnClickListener(v -> {
             startActivity(new Intent(this, BookTableActivity.class));
         });
 
-        // Back button
         btnBack.setOnClickListener(v -> finish());
-    }
-
-    private List<Reservation> filterUpcoming() {
-        List<Reservation> list = new ArrayList<>();
-        for (Reservation r : allReservations) {
-            if (r.date.compareTo("2025-11-23") >= 0) { // Today or future
-                list.add(r);
-            }
-        }
-        return list;
-    }
-
-    private List<Reservation> filterPast() {
-        List<Reservation> list = new ArrayList<>();
-        for (Reservation r : allReservations) {
-            if (r.date.compareTo("2025-11-23") < 0) {
-                list.add(r);
-            }
-        }
-        return list;
     }
 
     private void updateEmptyState(boolean isEmpty) {
@@ -114,21 +100,6 @@ public class MyReservationsActivity extends AppCompatActivity {
         } else {
             rvReservations.setVisibility(View.VISIBLE);
             cardEmptyState.setVisibility(View.GONE);
-        }
-    }
-
-    // Reservation model - fields are now public
-    public static class Reservation {
-        public String title;
-        public String time;
-        public String status;
-        public String date;
-
-        public Reservation(String title, String time, String status, String date) {
-            this.title = title;
-            this.time = time;
-            this.status = status;
-            this.date = date;
         }
     }
 }

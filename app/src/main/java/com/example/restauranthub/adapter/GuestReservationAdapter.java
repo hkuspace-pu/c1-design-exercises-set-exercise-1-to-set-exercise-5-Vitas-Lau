@@ -11,20 +11,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.restauranthub.R;
 import com.example.restauranthub.activity.EditReservationActivity;
-import com.example.restauranthub.activity.MyReservationsActivity;
+import com.example.restauranthub.model.Reservation;
 import java.util.List;
 
 public class GuestReservationAdapter extends RecyclerView.Adapter<GuestReservationAdapter.ViewHolder> {
 
-    private List<MyReservationsActivity.Reservation> reservations;
+    private List<Reservation> reservations;
     private Context context;
 
-    public GuestReservationAdapter(Context context, List<MyReservationsActivity.Reservation> reservations) {
+    public GuestReservationAdapter(Context context, List<Reservation> reservations) {
         this.context = context;
         this.reservations = reservations;
     }
 
-    public void updateReservations(List<MyReservationsActivity.Reservation> newReservations) {
+    public void updateReservations(List<Reservation> newReservations) {
         this.reservations = newReservations;
         notifyDataSetChanged();
     }
@@ -38,7 +38,7 @@ public class GuestReservationAdapter extends RecyclerView.Adapter<GuestReservati
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        MyReservationsActivity.Reservation res = reservations.get(position);
+        Reservation res = reservations.get(position);
         holder.tvTitle.setText(res.title);
         holder.tvTime.setText(res.time);
         holder.tvStatus.setText(res.status);
