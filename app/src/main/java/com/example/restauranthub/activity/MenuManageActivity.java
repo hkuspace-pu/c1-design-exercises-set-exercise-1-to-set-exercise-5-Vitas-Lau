@@ -90,30 +90,30 @@ public class MenuManageActivity extends AppCompatActivity {
 
         rvMenuItems.setLayoutManager(new GridLayoutManager(this, 2));
 
-        // Dummy data with category
-        allMenuItems.add(new MenuItem("Garlic Bread", 6.99, R.drawable.placeholder_dish, true, "Starters"));
-        allMenuItems.add(new MenuItem("Spring Rolls", 8.99, R.drawable.placeholder_dish, true, "Starters"));
-        allMenuItems.add(new MenuItem("Bruschetta", 7.99, R.drawable.placeholder_dish, true, "Starters"));
-        allMenuItems.add(new MenuItem("Caesar Salad", 9.49, R.drawable.placeholder_dish, true, "Starters"));
-        allMenuItems.add(new MenuItem("Cheese Nachos", 10.99, R.drawable.placeholder_dish, false, "Starters"));
+        // Dummy data with category and specific images
+        allMenuItems.add(new MenuItem("Garlic Bread", 6.99, R.drawable.garlic_bread, true, "Starters"));
+        allMenuItems.add(new MenuItem("Spring Rolls", 8.99, R.drawable.spring_rolls, true, "Starters"));
+        allMenuItems.add(new MenuItem("Bruschetta", 7.99, R.drawable.bruschetta, true, "Starters"));
+        allMenuItems.add(new MenuItem("Caesar Salad", 9.49, R.drawable.caesar_salad, true, "Starters"));
+        allMenuItems.add(new MenuItem("Cheese Nachos", 10.99, R.drawable.cheese_nachos, false, "Starters"));
 
-        allMenuItems.add(new MenuItem("Spaghetti Carbonara", 18.99, R.drawable.placeholder_dish, true, "Mains"));
-        allMenuItems.add(new MenuItem("Grilled Ribeye Steak", 32.99, R.drawable.placeholder_dish, false, "Mains"));
-        allMenuItems.add(new MenuItem("Grilled Salmon", 28.99, R.drawable.placeholder_dish, false, "Mains"));
-        allMenuItems.add(new MenuItem("Vegetable Stir Fry", 15.49, R.drawable.placeholder_dish, true, "Mains"));
-        allMenuItems.add(new MenuItem("Chicken Curry", 17.99, R.drawable.placeholder_dish, true, "Mains"));
-        allMenuItems.add(new MenuItem("Beef Burger", 14.99, R.drawable.placeholder_dish, true, "Mains"));
+        allMenuItems.add(new MenuItem("Spaghetti Carbonara", 18.99, R.drawable.spaghetti_carbonara, true, "Mains"));
+        allMenuItems.add(new MenuItem("Grilled Ribeye Steak", 32.99, R.drawable.grilled_ribeye_steak, false, "Mains"));
+        allMenuItems.add(new MenuItem("Grilled Salmon", 28.99, R.drawable.grilled_salmon, false, "Mains"));
+        allMenuItems.add(new MenuItem("Vegetable Stir Fry", 15.49, R.drawable.vegetable_stir_fry, true, "Mains"));
+        allMenuItems.add(new MenuItem("Chicken Curry", 17.99, R.drawable.chicken_curry, true, "Mains"));
+        allMenuItems.add(new MenuItem("Beef Burger", 14.99, R.drawable.beef_burger, true, "Mains"));
 
-        allMenuItems.add(new MenuItem("Chocolate Lava Cake", 7.99, R.drawable.placeholder_dish, true, "Desserts"));
-        allMenuItems.add(new MenuItem("Tiramisu", 8.49, R.drawable.placeholder_dish, true, "Desserts"));
-        allMenuItems.add(new MenuItem("Cheesecake", 6.99, R.drawable.placeholder_dish, false, "Desserts"));
-        allMenuItems.add(new MenuItem("Ice Cream Sundae", 5.99, R.drawable.placeholder_dish, true, "Desserts"));
+        allMenuItems.add(new MenuItem("Chocolate Lava Cake", 7.99, R.drawable.chocolate_lava_cake, true, "Desserts"));
+        allMenuItems.add(new MenuItem("Tiramisu", 8.49, R.drawable.tiramisu, true, "Desserts"));
+        allMenuItems.add(new MenuItem("Cheesecake", 6.99, R.drawable.cheesecake, false, "Desserts"));
+        allMenuItems.add(new MenuItem("Ice Cream Sundae", 5.99, R.drawable.ice_cream_sundae, true, "Desserts"));
 
-        allMenuItems.add(new MenuItem("Coca Cola", 2.99, R.drawable.placeholder_dish, true, "Drinks"));
-        allMenuItems.add(new MenuItem("Lemonade", 3.49, R.drawable.placeholder_dish, true, "Drinks"));
-        allMenuItems.add(new MenuItem("Red Wine", 25.99, R.drawable.placeholder_dish, false, "Drinks"));
-        allMenuItems.add(new MenuItem("Espresso", 4.99, R.drawable.placeholder_dish, true, "Drinks"));
-        allMenuItems.add(new MenuItem("Green Tea", 3.99, R.drawable.placeholder_dish, true, "Drinks"));
+        allMenuItems.add(new MenuItem("Coca Cola", 2.99, R.drawable.coca_cola, true, "Drinks"));
+        allMenuItems.add(new MenuItem("Lemonade", 3.49, R.drawable.lemonade, true, "Drinks"));
+        allMenuItems.add(new MenuItem("Red Wine", 25.99, R.drawable.red_wine, false, "Drinks"));
+        allMenuItems.add(new MenuItem("Espresso", 4.99, R.drawable.espresso, true, "Drinks"));
+        allMenuItems.add(new MenuItem("Green Tea", 3.99, R.drawable.green_tea, true, "Drinks"));
 
         adapter = new MenuItemAdapter(allMenuItems, true, new MenuItemAdapter.OnItemClickListener() {
             @Override
