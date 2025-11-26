@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.bumptech.glide.Glide;
 import com.example.restauranthub.R;
 import com.google.android.material.chip.Chip;
 
@@ -39,14 +40,22 @@ public class MenuItemDetailActivity extends AppCompatActivity {
         // Get data from intent
         String name = getIntent().getStringExtra("name");
         double price = getIntent().getDoubleExtra("price", 0.0);
-        int imageRes = getIntent().getIntExtra("imageRes", R.drawable.placeholder_food);
+        // Use string URL instead of int resource
+        String imageUrl = getIntent().getStringExtra("imageUrl");
         String description = getIntent().getStringExtra("description");
         String category = getIntent().getStringExtra("category");
         boolean vegetarian = getIntent().getBooleanExtra("vegetarian", false);
 
         toolbar.setTitle(name);
 
-        ivHeroImage.setImageResource(imageRes);
+        // Load image with Glide
+        Glide.with(this)
+                .load(imageUrl)
+                .placeholder(R.drawable.placeholder_dish)
+                .error(R.drawable.placeholder_dish)
+                .centerCrop()
+                .into(ivHeroImage);
+
         tvDishName.setText(name);
         tvPrice.setText("$" + String.format("%.2f", price));
         tvDescription.setText(description != null ? description : "No description available.");

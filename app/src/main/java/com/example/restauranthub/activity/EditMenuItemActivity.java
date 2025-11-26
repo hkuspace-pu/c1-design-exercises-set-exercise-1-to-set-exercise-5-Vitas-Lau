@@ -69,7 +69,7 @@ public class EditMenuItemActivity extends AppCompatActivity {
         String dishName = getIntent().getStringExtra("dishName");
         String description = getIntent().getStringExtra("description");
         double price = getIntent().getDoubleExtra("price", 0.0);
-        int imageRes = getIntent().getIntExtra("imageRes", R.drawable.placeholder_image);
+        int imageRes = getIntent().getIntExtra("imageRes", R.drawable.placeholder_dish);
         boolean available = getIntent().getBooleanExtra("available", true);
 
         etDishName.setText(dishName);
@@ -88,7 +88,7 @@ public class EditMenuItemActivity extends AppCompatActivity {
 
         // Remove image
         btnRemoveImage.setOnClickListener(v -> {
-            ivDishImage.setImageResource(R.drawable.placeholder_image);
+            ivDishImage.setImageResource(R.drawable.placeholder_dish);
             selectedImageUri = null;
             btnRemoveImage.setVisibility(View.GONE);
         });
