@@ -16,12 +16,8 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.FileProvider;
 import com.example.restauranthub.R;
-import java.io.File;
-import java.io.IOException;
 
 public class EditMenuItemActivity extends AppCompatActivity {
 
@@ -29,7 +25,6 @@ public class EditMenuItemActivity extends AppCompatActivity {
     private FrameLayout flImageContainer;
     private ImageView ivDishImage;
     private Uri selectedImageUri;
-    private Uri photoUri;
     private EditText etDishName, etDescription, etPrice;
     private CheckBox cbItemAvailable, cbVegetarian, cbVegan, cbGlutenFree, cbDairyFree, cbNutFree, cbSpicy;
     private Button btnSave, btnCancel;
@@ -41,20 +36,6 @@ public class EditMenuItemActivity extends AppCompatActivity {
                 public void onActivityResult(ActivityResult result) {
                     if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                         selectedImageUri = result.getData().getData();
-                        ivDishImage.setImageURI(selectedImageUri);
-                        btnRemoveImage.setVisibility(View.VISIBLE);
-                    }
-                }
-            }
-    );
-
-    private final ActivityResultLauncher<Intent> cameraLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    if (result.getResultCode() == RESULT_OK) {
-                        selectedImageUri = photoUri;
                         ivDishImage.setImageURI(selectedImageUri);
                         btnRemoveImage.setVisibility(View.VISIBLE);
                     }
@@ -90,7 +71,6 @@ public class EditMenuItemActivity extends AppCompatActivity {
         double price = getIntent().getDoubleExtra("price", 0.0);
         int imageRes = getIntent().getIntExtra("imageRes", R.drawable.placeholder_image);
         boolean available = getIntent().getBooleanExtra("available", true);
-        // category is unused for now as there is no spinner in this layout based on previous code
 
         etDishName.setText(dishName);
         etDescription.setText(description);
@@ -99,8 +79,12 @@ public class EditMenuItemActivity extends AppCompatActivity {
         ivDishImage.setImageResource(imageRes);
         btnRemoveImage.setVisibility(View.VISIBLE);
 
-        // Click to show dialog for gallery or camera
-        flImageContainer.setOnClickListener(v -> showImageSourceDialog());
+        // Click to show dialog for gallery ONLY (Camera removed)
+        flImageContainer.setOnClickListener(v -> {
+            // Gallery only
+            Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            galleryLauncher.launch(galleryIntent);
+        });
 
         // Remove image
         btnRemoveImage.setOnClickListener(v -> {
@@ -147,7 +131,7 @@ public class EditMenuItemActivity extends AppCompatActivity {
         }
         resultIntent.putExtra("available", cbItemAvailable.isChecked());
         
-        // Pass back dietary flags if needed
+        // Pass back dietary flags
         resultIntent.putExtra("vegetarian", cbVegetarian.isChecked());
         resultIntent.putExtra("vegan", cbVegan.isChecked());
         resultIntent.putExtra("glutenFree", cbGlutenFree.isChecked());
@@ -158,45 +142,5 @@ public class EditMenuItemActivity extends AppCompatActivity {
         setResult(RESULT_OK, resultIntent);
         Toast.makeText(this, "Item saved", Toast.LENGTH_SHORT).show();
         finish();
-    }
-
-    private void showImageSourceDialog() {
-        final CharSequence[] options = {"Take Photo", "Choose from Gallery", "Cancel"};
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Replace Photo");
-        builder.setItems(options, (dialog, which) -> {
-            if (which == 0) {
-                // Camera
-                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                if (cameraIntent.resolveActivity(getPackageManager()) != null) {
-                    File photoFile = null;
-                    try {
-                        photoFile = createImageFile();
-                    } catch (IOException ex) {
-                        // Error
-                    }
-                    if (photoFile != null) {
-                        photoUri = FileProvider.getUriForFile(EditMenuItemActivity.this,
-                                "com.example.restauranthub.fileprovider", photoFile);
-                        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-                        cameraLauncher.launch(cameraIntent);
-                    }
-                }
-            } else if (which == 1) {
-                // Gallery
-                Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                galleryLauncher.launch(galleryIntent);
-            } else {
-                dialog.dismiss();
-            }
-        });
-        builder.show();
-    }
-
-    private File createImageFile() throws IOException {
-        String timeStamp = new java.text.SimpleDateFormat("yyyyMMdd_HHmmss").format(new java.util.Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getExternalFilesDir(android.os.Environment.DIRECTORY_PICTURES);
-        return File.createTempFile(imageFileName, ".jpg", storageDir);
     }
 }
