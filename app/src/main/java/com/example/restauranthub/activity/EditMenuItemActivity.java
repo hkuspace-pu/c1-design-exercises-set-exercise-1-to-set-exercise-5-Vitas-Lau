@@ -1,6 +1,5 @@
 package com.example.restauranthub.activity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,8 +11,6 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -93,7 +90,7 @@ public class EditMenuItemActivity extends AppCompatActivity {
         double price = getIntent().getDoubleExtra("price", 0.0);
         int imageRes = getIntent().getIntExtra("imageRes", R.drawable.placeholder_image);
         boolean available = getIntent().getBooleanExtra("available", true);
-        String category = getIntent().getStringExtra("category");
+        // category is unused for now as there is no spinner in this layout based on previous code
 
         etDishName.setText(dishName);
         etDescription.setText(description);
@@ -117,12 +114,50 @@ public class EditMenuItemActivity extends AppCompatActivity {
 
         // Save
         btnSave.setOnClickListener(v -> {
-            Toast.makeText(this, "Item saved", Toast.LENGTH_SHORT).show();
-            finish();
+            if (validateInput()) {
+                saveMenuItem();
+            }
         });
 
         // Cancel
         btnCancel.setOnClickListener(v -> finish());
+    }
+
+    private boolean validateInput() {
+        if (etDishName.getText().toString().trim().isEmpty()) {
+            etDishName.setError("Name is required");
+            return false;
+        }
+        if (etPrice.getText().toString().trim().isEmpty()) {
+            etPrice.setError("Price is required");
+            return false;
+        }
+        return true;
+    }
+
+    private void saveMenuItem() {
+        // Mock save - return data to caller
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("dishName", etDishName.getText().toString());
+        resultIntent.putExtra("description", etDescription.getText().toString());
+        try {
+            resultIntent.putExtra("price", Double.parseDouble(etPrice.getText().toString()));
+        } catch (NumberFormatException e) {
+            resultIntent.putExtra("price", 0.0);
+        }
+        resultIntent.putExtra("available", cbItemAvailable.isChecked());
+        
+        // Pass back dietary flags if needed
+        resultIntent.putExtra("vegetarian", cbVegetarian.isChecked());
+        resultIntent.putExtra("vegan", cbVegan.isChecked());
+        resultIntent.putExtra("glutenFree", cbGlutenFree.isChecked());
+        resultIntent.putExtra("dairyFree", cbDairyFree.isChecked());
+        resultIntent.putExtra("nutFree", cbNutFree.isChecked());
+        resultIntent.putExtra("spicy", cbSpicy.isChecked());
+
+        setResult(RESULT_OK, resultIntent);
+        Toast.makeText(this, "Item saved", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     private void showImageSourceDialog() {

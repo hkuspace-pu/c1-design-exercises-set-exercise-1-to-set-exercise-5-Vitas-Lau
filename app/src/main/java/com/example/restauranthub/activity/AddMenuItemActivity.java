@@ -7,10 +7,14 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.Toast;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -28,6 +32,10 @@ public class AddMenuItemActivity extends AppCompatActivity {
     private FrameLayout flImageContainer;
     private ImageView ivDishImage;
     private LinearLayout llUploadPrompt;
+    private EditText etDishName, etDescription, etPrice;
+    private Spinner spCategory;
+    private CheckBox cbItemAvailable, cbVegetarian, cbVegan, cbGlutenFree, cbDairyFree, cbNutFree, cbSpicy;
+    private Button btnSave, btnCancel;
     private Uri selectedImageUri;
     private Uri photoUri; // For camera capture
 
@@ -70,27 +78,61 @@ public class AddMenuItemActivity extends AppCompatActivity {
         flImageContainer = findViewById(R.id.flImageContainer);
         ivDishImage = findViewById(R.id.ivDishImage);
         llUploadPrompt = findViewById(R.id.llUploadPrompt);
+        etDishName = findViewById(R.id.etDishName);
+        etDescription = findViewById(R.id.etDescription);
+        etPrice = findViewById(R.id.etPrice);
+        spCategory = findViewById(R.id.spCategory);
+        cbItemAvailable = findViewById(R.id.cbItemAvailable);
+        cbVegetarian = findViewById(R.id.cbVegetarian);
+        cbVegan = findViewById(R.id.cbVegan);
+        cbGlutenFree = findViewById(R.id.cbGlutenFree);
+        cbDairyFree = findViewById(R.id.cbDairyFree);
+        cbNutFree = findViewById(R.id.cbNutFree);
+        cbSpicy = findViewById(R.id.cbSpicy);
+        btnSave = findViewById(R.id.btnSave);
+        btnCancel = findViewById(R.id.btnCancel);
 
         // Initial state: Show upload prompt, hide image
         ivDishImage.setVisibility(View.GONE);
         llUploadPrompt.setVisibility(View.VISIBLE);
 
         // Click to show dialog for gallery or camera
-        flImageContainer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showImageSourceDialog();
+        flImageContainer.setOnClickListener(v -> showImageSourceDialog());
+
+        btnBack.setOnClickListener(v -> finish());
+
+        btnSave.setOnClickListener(v -> {
+            if (validateInput()) {
+                saveMenuItem();
             }
         });
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        btnCancel.setOnClickListener(v -> finish());
+    }
 
-        // TODO: Add logic for save, cancel
+    private boolean validateInput() {
+        if (etDishName.getText().toString().trim().isEmpty()) {
+            etDishName.setError("Name is required");
+            return false;
+        }
+        if (etPrice.getText().toString().trim().isEmpty()) {
+            etPrice.setError("Price is required");
+            return false;
+        }
+        return true;
+    }
+
+    private void saveMenuItem() {
+        // In a real app, this would save to a database.
+        // For now, we'll just return a result to the caller or show a success message.
+        
+        // Create intent to return data if needed, or just finish
+        Intent resultIntent = new Intent();
+        // Put extras...
+        
+        Toast.makeText(this, "Menu item added!", Toast.LENGTH_SHORT).show();
+        setResult(RESULT_OK);
+        finish();
     }
 
     private void showImageSourceDialog() {

@@ -133,6 +133,26 @@
                 android:inputType="text"
                 android:layout_marginTop="4dp"
                 app:layout_constraintTop_toBottomOf="@id/tvDishNameLabel" />
+            
+            <!-- Category Label & Field -->
+            <TextView
+                android:id="@+id/tvCategoryLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/etDishName"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Spinner
+                android:id="@+id/spCategory"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintTop_toBottomOf="@id/tvCategoryLabel" />
+
 
             <!-- Description Label & Field -->
             <TextView
@@ -143,7 +163,7 @@
                 android:textSize="14sp"
                 android:textColor="#333333"
                 android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/etDishName"
+                app:layout_constraintTop_toBottomOf="@id/spCategory"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
