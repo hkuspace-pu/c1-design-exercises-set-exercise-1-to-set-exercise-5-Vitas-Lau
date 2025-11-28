@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.restauranthub.R;
 import com.example.restauranthub.activity.MenuItemDetailActivity;
-import com.example.restauranthub.activity.MenuBrowseActivity.MenuItem;
+import com.example.restauranthub.model.MenuItem;
 import java.util.List;
 
 public class GuestMenuAdapter extends RecyclerView.Adapter<GuestMenuAdapter.ViewHolder> {
