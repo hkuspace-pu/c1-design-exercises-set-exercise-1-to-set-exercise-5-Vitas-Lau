@@ -11,6 +11,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.restauranthub.R;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
 
 public class EditReservationActivity extends AppCompatActivity {
 
@@ -40,14 +45,10 @@ public class EditReservationActivity extends AppCompatActivity {
         // Pre-fill from intent
         tvGuestName.setText(getIntent().getStringExtra("guestName"));
         tvPhone.setText(getIntent().getStringExtra("phone"));
-        // TODO: Pre-select spinners based on extras (e.g., spinnerDate.setSelection(index))
 
-        // Setup Spinners with dummy options
-        ArrayAdapter<String> dateAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Select Date", "Wed, Nov 19, 2025", "Thu, Nov 20, 2025", "Fri, Nov 21, 2025"});
-        spinnerDate.setAdapter(dateAdapter);
-
-        ArrayAdapter<String> timeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Select Time", "18:30", "19:00", "20:00"});
-        spinnerTime.setAdapter(timeAdapter);
+        // Setup Spinners
+        setupDateSpinner();
+        setupTimeSpinner();
 
         ArrayAdapter<String> partyAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, new String[]{"Select Party Size", "2 guests", "4 guests", "6 guests"});
         spinnerPartySize.setAdapter(partyAdapter);
@@ -83,5 +84,33 @@ public class EditReservationActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private void setupDateSpinner() {
+        List<String> dates = new ArrayList<>();
+        dates.add("Select a date");
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM dd, yyyy", Locale.getDefault());
+
+        for (int i = 0; i < 30; i++) {
+            dates.add(sdf.format(calendar.getTime()));
+            calendar.add(Calendar.DAY_OF_YEAR, 1);
+        }
+
+        ArrayAdapter<String> dateAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, dates);
+        spinnerDate.setAdapter(dateAdapter);
+    }
+
+    private void setupTimeSpinner() {
+        List<String> times = new ArrayList<>();
+        times.add("Select Time");
+        // Add times from 11:00 to 22:00 in 30-minute intervals
+        for (int h = 11; h < 22; h++) {
+            times.add(String.format(Locale.getDefault(), "%02d:00", h));
+            times.add(String.format(Locale.getDefault(), "%02d:30", h));
+        }
+        ArrayAdapter<String> timeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, times);
+        spinnerTime.setAdapter(timeAdapter);
     }
 }

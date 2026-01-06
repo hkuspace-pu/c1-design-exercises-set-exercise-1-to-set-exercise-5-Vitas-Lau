@@ -10,28 +10,28 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.restauranthub.R;
-import com.example.restauranthub.activity.MenuManageActivity;
+import com.example.restauranthub.model.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.ViewHolder> {
 
-    private List<MenuManageActivity.MenuItem> menuItems = new ArrayList<>();
+    private List<MenuItem> menuItems = new ArrayList<>();
     private boolean isManageMode;
     private OnItemClickListener listener;
 
     public interface OnItemClickListener {
-        void onEditClick(MenuManageActivity.MenuItem item);
-        void onDeleteClick(MenuManageActivity.MenuItem item);
+        void onEditClick(MenuItem item);
+        void onDeleteClick(MenuItem item);
     }
 
-    public MenuItemAdapter(List<MenuManageActivity.MenuItem> menuItems, boolean isManageMode, OnItemClickListener listener) {
+    public MenuItemAdapter(List<MenuItem> menuItems, boolean isManageMode, OnItemClickListener listener) {
         this.menuItems = menuItems;
         this.isManageMode = isManageMode;
         this.listener = listener;
     }
 
-    public void updateMenuItems(List<MenuManageActivity.MenuItem> newItems) {
+    public void updateMenuItems(List<MenuItem> newItems) {
         this.menuItems = newItems;
         notifyDataSetChanged();
     }
@@ -45,7 +45,7 @@ public class MenuItemAdapter extends RecyclerView.Adapter<MenuItemAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        MenuManageActivity.MenuItem item = menuItems.get(position);
+        MenuItem item = menuItems.get(position);
         holder.ivThumbnail.setImageResource(item.imageRes);
         holder.tvName.setText(item.name);
         holder.tvPrice.setText("$" + String.format("%.2f", item.price));

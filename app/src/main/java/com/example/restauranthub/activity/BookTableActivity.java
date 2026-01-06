@@ -12,8 +12,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.restauranthub.R;
 import com.example.restauranthub.adapter.TimeSlotAdapter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class BookTableActivity extends AppCompatActivity implements TimeSlotAdapter.OnTimeSlotClickListener {
 
@@ -54,9 +57,7 @@ public class BookTableActivity extends AppCompatActivity implements TimeSlotAdap
         rvTimeSlots.setAdapter(timeSlotAdapter);
 
         // Date spinner
-        ArrayAdapter<String> dateAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
-                new String[]{"Select a date", "Sun, Nov 23, 2025", "Mon, Nov 24, 2025", "Tue, Nov 25, 2025"});
-        spinnerDate.setAdapter(dateAdapter);
+        setupDateSpinner();
 
         // Party size spinner
         ArrayAdapter<String> partyAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,
@@ -75,6 +76,22 @@ public class BookTableActivity extends AppCompatActivity implements TimeSlotAdap
                 finish();
             }
         });
+    }
+
+    private void setupDateSpinner() {
+        List<String> dates = new ArrayList<>();
+        dates.add("Select a date");
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE, MMM dd, yyyy", Locale.getDefault());
+
+        for (int i = 0; i < 30; i++) {
+            dates.add(sdf.format(calendar.getTime()));
+            calendar.add(Calendar.DAY_OF_YEAR, 1);
+        }
+
+        ArrayAdapter<String> dateAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, dates);
+        spinnerDate.setAdapter(dateAdapter);
     }
 
     @Override
